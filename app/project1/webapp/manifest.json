@@ -131,7 +131,7 @@
     "sap.ovp": {
         "globalFilterModel": "mainService",
         "globalFilterEntityType": "MaintOrders",
-        "containerLayout": "resizable",
+        "containerLayout": "fixed",
         "enableLiveFilter": true,
         "considerAnalyticalParameters": false,
         "cards": {
@@ -141,16 +141,19 @@
                 "settings": {
                     "title": "Standard Card",
                     "entitySet": "MaintOrdersAnalytics",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart"
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
+                    "defaultSpan": {
+                        "rows": 10,
+                        "cols": 3
+                    }
                 }
             },
-            "card01": {
-                "model": "mainService2",
-                "template": "sap.ovp.cards.v4.charts.analytical",
+            "ExtCard01": {
+                "model": "mainService",
+                "template": "project1.ext.cards",
                 "settings": {
-                    "title": "Standard Card2",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart"
+                    "title": "Custom Card",
+                    "entitySet": "MaintOrdersAnalytics"
                 }
             }
         }

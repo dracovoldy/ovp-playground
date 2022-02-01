@@ -1,5 +1,31 @@
 using {AnalyticsService} from './service';
 
+annotate AnalyticsService.MaintOrdersAnalytics.MaintPriorityType with @(UI: {
+    
+ValueCriticality  : [
+    {
+        $Type : 'UI.ValueCriticalityType',
+        Value : 'Y1',
+        Criticality : #Positive,
+    },
+    {
+        $Type : 'UI.ValueCriticalityType',
+        Value : 'Y2',
+        Criticality : #Negative,
+    },
+    {
+        $Type : 'UI.ValueCriticalityType',
+        Value : 'Y3',
+        Criticality : #VeryNegative,
+    },
+    {
+        $Type : 'UI.ValueCriticalityType',
+        Value : 'Y4',
+        Criticality : #Neutral,
+    },
+],
+});
+
 annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
     $Type               : 'UI.ChartDefinitionType',
     ChartType           : #Column,
