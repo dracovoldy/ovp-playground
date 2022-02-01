@@ -1,32 +1,34 @@
 using {AnalyticsService} from './service';
 
-annotate AnalyticsService.MaintOrdersAnalytics.MaintPriorityType with @(UI: {
-    
-ValueCriticality  : [
-    {
-        $Type : 'UI.ValueCriticalityType',
-        Value : 'Y1',
-        Criticality : #Positive,
-    },
-    {
-        $Type : 'UI.ValueCriticalityType',
-        Value : 'Y2',
-        Criticality : #Negative,
-    },
-    {
-        $Type : 'UI.ValueCriticalityType',
-        Value : 'Y3',
-        Criticality : #VeryNegative,
-    },
-    {
-        $Type : 'UI.ValueCriticalityType',
-        Value : 'Y4',
-        Criticality : #Neutral,
-    },
-],
-});
+annotate AnalyticsService.MaintOrdersAnalytics {
+    @UI.ValueCriticality : [
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y1',
+            Criticality : #Positive,
+        },
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y2',
+            Criticality : #Negative,
+        },
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y3',
+            Criticality : #Critical,
+        },
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y4',
+            Criticality : #Neutral,
+        }
+    ]
+    MaintPriorityType
 
-annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
+};
+
+annotate AnalyticsService.MaintOrdersAnalytics with
+@(UI : {Chart : {
     $Type               : 'UI.ChartDefinitionType',
     ChartType           : #Column,
     Measures            : ['OrderCounter'],
@@ -53,14 +55,16 @@ annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
     ]
 }});
 
-annotate AnalyticsService.MaintOrders with @(
-    UI: {
-        SelectionFields: [MaintPriorityType, MaintPriorityType, MaintenanceOrderType],
-        LineItem: [
-            { Value: MaintenanceOrder },
-            { Value: MaintPriority },
-            { Value: MaintPriorityType },
-            { Value: MaintenanceOrderType }
-        ],   
-    }
-);
+annotate AnalyticsService.MaintOrders with
+@(UI : {
+    SelectionFields : [
+        MaintPriorityType,
+        MaintenanceOrderType
+    ],
+    LineItem        : [
+        {Value : MaintenanceOrder},
+        {Value : MaintPriority},
+        {Value : MaintPriorityType},
+        {Value : MaintenanceOrderType}
+    ],
+});
