@@ -15,7 +15,7 @@
         persistencyKey="schart"
         enableAutoBinding="true"
         useVariantManagement="false"
-        useChartPersonalisation="false"
+        useChartPersonalisation="true"
         showFullScreenButton="true"
         selectionMode="Multi"
         showChartTooltip="true"

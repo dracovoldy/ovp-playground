@@ -18,6 +18,36 @@
              */
             onInit: function () {
                 // debugger;
+
+                // set max height for categoryAxis in order to allow longer labels being fully displayed
+                var oSmartChart = this.getView().byId("schart");
+
+                oSmartChart.attachInitialized(function (oControlEvent) {
+                    var sIgnoredChartTypes = "bubble, bullet, line, pie, donut, " +
+                        "vertical_bullet, 100_stacked_bar, " +
+                        "100_stacked_column, waterfall, horizontal_waterfall";
+
+                    oSmartChart.setIgnoredChartTypes(sIgnoredChartTypes);
+                    oSmartChart.getChartAsync().then(function (oInnerChart) {
+
+                        debugger;
+                        console.log(oInnerChart)
+                        oInnerChart.setVizProperties({
+                            // categoryAxis: {
+                            //     layout: {
+                            //         maxHeight: 0.5
+                            //     }
+                            // },
+                            plotArea: {
+                                colorPalette: d3.scale.category20().range(),
+                                dataLabel: {
+                                    showTotal: true
+                                },
+                                drawingEffect: 'glossy'
+                            },
+                        });
+                    });
+                }, this);
             },
 
             onAfterRendering: function () {
