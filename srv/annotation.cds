@@ -1,6 +1,34 @@
 using {AnalyticsService} from './service';
 
-annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
+annotate AnalyticsService.MaintOrdersAnalytics {
+    @UI.ValueCriticality : [
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y1',
+            Criticality : #Positive,
+        },
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y2',
+            Criticality : #Negative,
+        },
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y3',
+            Criticality : #Critical,
+        },
+        {
+            $Type       : 'UI.ValueCriticalityType',
+            Value       : 'Y4',
+            Criticality : #Neutral,
+        }
+    ]
+    MaintPriorityType
+
+};
+
+annotate AnalyticsService.MaintOrdersAnalytics with
+@(UI : {Chart : {
     $Type               : 'UI.ChartDefinitionType',
     ChartType           : #ColumnStacked,
     Measures            : ['OrderCounter'],

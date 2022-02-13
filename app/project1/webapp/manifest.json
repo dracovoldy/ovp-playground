@@ -132,7 +132,7 @@
     "sap.ovp": {
         "globalFilterModel": "mainService",
         "globalFilterEntityType": "MaintOrders",
-        "containerLayout": "resizable",
+        "containerLayout": "fixed",
         "enableLiveFilter": true,
         "considerAnalyticalParameters": false,
         "cards": {
