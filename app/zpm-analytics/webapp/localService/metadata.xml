@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
+        <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
+        <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="AnalyticsService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="MaintOrders" EntityType="AnalyticsService.MaintOrders"/>
+                <EntitySet Name="OrderTypes" EntityType="AnalyticsService.OrderTypes"/>
+                <EntitySet Name="MaintOrdersAnalytics" EntityType="AnalyticsService.MaintOrdersAnalytics"/>
+            </EntityContainer>
+            <EntityType Name="MaintOrders">
+                <Key>
+                    <PropertyRef Name="MaintenanceOrder"/>
+                </Key>
+                <Property Name="MaintenanceOrder" Type="Edm.String" Nullable="false"/>
+                <Property Name="MaintenanceOrderType" Type="Edm.String"/>
+                <Property Name="MaintPriority" Type="Edm.String"/>
+                <Property Name="MaintPriorityType" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="OrderTypes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="OrderTypeText" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="MaintOrdersAnalytics">
+                <Key>
+                    <PropertyRef Name="MaintenanceOrder"/>
+                </Key>
+                <Property Name="MaintenanceOrder" Type="Edm.String" Nullable="false"/>
+                <Property Name="MaintenanceOrderType" Type="Edm.String"/>
+                <Property Name="OrderTypeText" Type="Edm.String"/>
+                <Property Name="MaintPriority" Type="Edm.String"/>
+                <Property Name="MaintPriorityType" Type="Edm.String"/>
+                <Property Name="OrderCounter" Type="Edm.Int32"/>
+            </EntityType>
+            <Annotations Target="AnalyticsService.MaintOrders">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>MaintPriorityType</PropertyPath>
+                        <PropertyPath>MaintenanceOrderType</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintPriority"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintPriorityType"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintenanceOrderType"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrder">
+                <Annotation Term="Common.Label" String="Maintenance Order #"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrderType">
+                <Annotation Term="Common.Label" String="Order Type"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrders/MaintPriority">
+                <Annotation Term="Common.Label" String="Priority"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrders/MaintPriorityType">
+                <Annotation Term="Common.Label" String="Priority Type"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrdersAnalytics">
+                <Annotation Term="UI.Chart">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>OrderCounter</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="OrderCounter"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>MaintPriorityType</PropertyPath>
+                                <PropertyPath>MaintenanceOrderType</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="MaintenanceOrderType"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="MaintPriorityType"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AnalyticsService.EntityContainer/MaintOrdersAnalytics">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintenanceOrder">
+                <Annotation Term="Common.Label" String="Maintenance Order #"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintenanceOrderType">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Order Type"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintPriority">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Priority"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintPriorityType">
+                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Label" String="Priority Type"/>
+            </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/OrderCounter">
+                <Annotation Term="Analytics.Measure" Bool="true"/>
+                <Annotation Term="Aggregation.default" EnumMember="Aggregation.defaultType/SUM"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Number of Orders"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

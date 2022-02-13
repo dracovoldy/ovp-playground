@@ -105,7 +105,8 @@
             "mainService2": {
                 "dataSource": "mainService2",
                 "settings": {
-                    "synchronizationMode": "None"
+                    "synchronizationMode": "None",
+                    "operationMode": "Server"
                 }
             },
             "mainService": {
@@ -141,16 +142,27 @@
                 "settings": {
                     "title": "Standard Card",
                     "entitySet": "MaintOrdersAnalytics",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart"
+                    "navigation": "noHeaderNav",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
+                    "stopResizing": true,
+                    "defaultSpan": {
+						"rows": 1,
+						"cols": 1,
+						"showOnlyHeader": false
+					}
                 }
             },
             "card01": {
-                "model": "mainService2",
-                "template": "sap.ovp.cards.v4.charts.analytical",
+                "model": "mainService",
+                "template": "project1.cards.analytics",
                 "settings": {
-                    "title": "Standard Card2",
+                    "title": "Custom Card",
                     "entitySet": "MaintOrdersAnalytics",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart"
+                    "defaultSpan": {
+						"rows": 1,
+						"cols": 3,
+						"showOnlyHeader": false
+					}
                 }
             }
         }

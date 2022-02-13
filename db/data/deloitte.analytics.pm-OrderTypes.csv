@@ -1,0 +1,8 @@
+﻿ID,OrderTypeText
+YA01,Reactive
+YA02,Proactive
+YA03,Improvement
+YA04,Operational
+YA05,Overhead
+YBA1,Corrective
+YBA2,Preventive

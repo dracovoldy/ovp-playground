@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:ovp="sap.ovp.ui"
+        xmlns:smartchart="sap.ui.comp.smartchart"
+        xmlns:core="sap.ui.core"
+        xmlns:layout="sap.ui.layout"
+        xmlns:comm="sap.suite.ui.commons"
+        xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+    <!-- Here you can put your Card's Content Area -->
+
+
+    <smartchart:SmartChart
+        id="schart"
+        entitySet="MaintOrdersAnalytics"
+        persistencyKey="schart"
+        enableAutoBinding="true"
+        useVariantManagement="false"
+        useChartPersonalisation="false"
+        showFullScreenButton="true"
+        selectionMode="Multi"
+        showChartTooltip="true"
+        showDrillBreadcrumbs="false"
+        showDetailsButton="false"
+        showDrillButtons="false"
+        showSemanticNavigationButton="true"
+        showChartTypeSelectionButton="true"
+        showVariantManagement="true"
+        showZoomButtons="false"
+        height="500px">
+    </smartchart:SmartChart>
+
+</core:FragmentDefinition>

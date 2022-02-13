@@ -2,7 +2,7 @@ using {AnalyticsService} from './service';
 
 annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
     $Type               : 'UI.ChartDefinitionType',
-    ChartType           : #Column,
+    ChartType           : #ColumnStacked,
     Measures            : ['OrderCounter'],
     MeasureAttributes   : [{
         $Type   : 'UI.ChartMeasureAttributeType',
@@ -10,14 +10,14 @@ annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
         Role    : #Axis1
     }],
     Dimensions          : [
+        'MaintPriorityType',
         'MaintenanceOrderType',
-        'MaintPriorityType'
     ],
     DimensionAttributes : [
         {
             $Type     : 'UI.ChartDimensionAttributeType',
             Dimension : 'MaintenanceOrderType',
-            Role      : #Category
+            Role      : #Series,
         },
         {
             $Type     : 'UI.ChartDimensionAttributeType',
@@ -27,14 +27,21 @@ annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
     ]
 }});
 
-annotate AnalyticsService.MaintOrders with @(
-    UI: {
-        SelectionFields: [MaintPriorityType, MaintPriorityType, MaintenanceOrderType],
-        LineItem: [
-            { Value: MaintenanceOrder },
-            { Value: MaintPriority },
-            { Value: MaintPriorityType },
-            { Value: MaintenanceOrderType }
-        ],   
-    }
-);
+annotate AnalyticsService.MaintOrders with @(UI : {
+    SelectionFields : [
+        MaintPriorityType,
+        MaintenanceOrderType
+    ],
+    LineItem        : [
+        {Value : MaintenanceOrder},
+        {Value : MaintPriority},
+        {Value : MaintPriorityType},
+        {Value : MaintenanceOrderType}
+    ],
+});
+
+// annotate AnalyticsService.MaintOrders with {
+//     @Common.Text: 'MaintenanceOrderTypeText'
+//     @Common.TextArrangement : #TextOnly
+//     MaintenanceOrderType
+// };
