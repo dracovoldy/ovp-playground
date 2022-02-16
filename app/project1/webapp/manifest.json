@@ -136,33 +136,68 @@
         "enableLiveFilter": true,
         "considerAnalyticalParameters": false,
         "cards": {
-            "card00": {
-                "model": "mainService",
-                "template": "sap.ovp.cards.charts.analytical",
-                "settings": {
-                    "title": "Standard Card",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "navigation": "noHeaderNav",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
-                    "stopResizing": false,
-                    "defaultSpan": {
-						"rows": 1,
-						"cols": 1,
-						"showOnlyHeader": false
-					}
-                }
-            },
             "card01": {
                 "model": "mainService",
                 "template": "project1.cards.analytics",
                 "settings": {
-                    "title": "Custom Card",
+                    "title": "{{card01_title}}",
                     "entitySet": "MaintOrdersAnalytics",
                     "defaultSpan": {
-						"rows": 1,
-						"cols": 1,
-						"showOnlyHeader": false
-					}
+                        "rows": 1,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465
+                    }
+                }
+            },
+            "card02": {
+                "model": "mainService",
+                "template": "project1.cards.analytics",
+                "settings": {
+                    "title": "{{card02_titletest}}",
+                    "entitySet": "MaintOrdersAnalytics",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 2,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465
+                    }
+                }
+            },
+            "card03": {
+                "model": "mainService",
+                "template": "project1.cards.analytics",
+                "settings": {
+                    "title": "{{card03_titletest}}",
+                    "entitySet": "MaintOrdersAnalytics",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465
+                    }
+                }
+            },
+            "card04": {
+                "model": "mainService",
+                "template": "project1.cards.analytics",
+                "settings": {
+                    "title": "{{card04_titletest}}",
+                    "entitySet": "MaintOrdersAnalytics",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 3,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465
+                    }
                 }
             }
         }

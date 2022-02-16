@@ -1,10 +1,17 @@
-<core:FragmentDefinition
-        xmlns="sap.m"
-        xmlns:core="sap.ui.core"
-        xmlns:ovp="sap.ovp.ui"
-        xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
-        height="50px
-        ">
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:ovp="sap.ovp.ui"
+    xmlns:l="sap.ui.layout"
+    xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" 
+    >
     <!-- Here you can put your Card's Header Area -->
-    <!-- <Title text="THIS IS A TITLE" /> -->
+
+    <!-- <l:HorizontalLayout> -->
+    <ComboBox>
+        <core:Item key="1" text="By priority" />
+        <core:Item key="2" text="By planning plant" />
+        <core:Item key="3" text="By somethng else" />
+    </ComboBox>
+    <!-- </l:HorizontalLayout> -->
+
 </core:FragmentDefinition>

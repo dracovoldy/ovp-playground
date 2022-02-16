@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "cds run",
-    "watch-zpm-analytics": "cds watch --open zpm-analytics/webapp/index.html#fe-lrop-v4"
+    "watch": "cds watch --open project1/webapp/test/flpSandbox.html#project1-tile"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",

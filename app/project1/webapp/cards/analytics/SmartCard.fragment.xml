@@ -8,10 +8,7 @@
         xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
     <!-- Here you can put your Card's Content Area -->
 
-
     <smartchart:SmartChart
-        id="schart"
-        entitySet="MaintOrdersAnalytics"
         persistencyKey="schart"
         enableAutoBinding="true"
         useVariantManagement="false"
@@ -26,7 +23,7 @@
         showChartTypeSelectionButton="true"
         showVariantManagement="true"
         showZoomButtons="false"
-        height="500px">
+        >
     </smartchart:SmartChart>
-
+    
 </core:FragmentDefinition>
