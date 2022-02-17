@@ -1,5 +1,5 @@
-sap.ui.define(["sap/ovp/cards/generic/Component","sap/ovp/cards/jUtils"],
-    function (CardComponent,jUtils) {
+sap.ui.define(["sap/ovp/cards/generic/Component"],
+    function (CardComponent) {
         "use strict";
 
         /* component for custom card */
@@ -31,11 +31,14 @@ sap.ui.define(["sap/ovp/cards/generic/Component","sap/ovp/cards/jUtils"],
                     libs: ["sap.m", "sap.ui.comp"],
                     components: []
                 },
-                config: {}
-            },
-            onAfterRendering: function () {
-                jUtils.setAttributeToMultipleElements(".tabindex0", "tabindex", 0);
-                jUtils.setAttributeToMultipleElements(".tabindex-1", "tabindex", -1);
+                config: {},
+                customizing: {
+                    "sap.ui.controllerExtensions": {
+                        "sap.ovp.cards.generic.Card": {
+                            controllerName: "project1.cards.analytics.SmartCard"
+                        }
+                    }
+                }
             }
         });
     });
