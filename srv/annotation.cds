@@ -1,36 +1,49 @@
 using {AnalyticsService} from './service';
 
-annotate AnalyticsService.MaintOrdersAnalytics {
-    @UI.ValueCriticality : [
-        {
-            $Type       : 'UI.ValueCriticalityType',
-            Value       : 'Y1',
-            Criticality : #Positive,
-        },
-        {
-            $Type       : 'UI.ValueCriticalityType',
-            Value       : 'Y2',
-            Criticality : #Negative,
-        },
-        {
-            $Type       : 'UI.ValueCriticalityType',
-            Value       : 'Y3',
-            Criticality : #Critical,
-        },
-        {
-            $Type       : 'UI.ValueCriticalityType',
-            Value       : 'Y4',
-            Criticality : #Neutral,
-        }
-    ]
-    MaintPriorityType
+// annotate AnalyticsService.MaintOrdersAnalytics {
+//     @UI.ValueCriticality : [
+//         {
+//             $Type       : 'UI.ValueCriticalityType',
+//             Value       : 'Y1',
+//             Criticality : #Positive,
+//         },
+//         {
+//             $Type       : 'UI.ValueCriticalityType',
+//             Value       : 'Y2',
+//             Criticality : #Negative,
+//         },
+//         {
+//             $Type       : 'UI.ValueCriticalityType',
+//             Value       : 'Y3',
+//             Criticality : #Critical,
+//         },
+//         {
+//             $Type       : 'UI.ValueCriticalityType',
+//             Value       : 'Y4',
+//             Criticality : #Neutral,
+//         }
+//     ]
+//     MaintPriorityType
 
-};
+// };
+
+// Common Annotations
+annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {
+    DataPoint                 : {
+        $Type : 'UI.DataPointType',
+        Value : OrderCounter,
+    },
+    Identification            : [{
+        $Type : 'UI.DataField',
+        Value : MaintenanceOrder,
+    }]
+});
 
 annotate AnalyticsService.MaintOrdersAnalytics with
-@(UI : {Chart : {
+@(UI : {
+    Chart : {
     $Type               : 'UI.ChartDefinitionType',
-    ChartType           : #ColumnStacked,
+    ChartType           : #Column,
     Measures            : ['OrderCounter'],
     MeasureAttributes   : [{
         $Type   : 'UI.ChartMeasureAttributeType',
@@ -38,19 +51,42 @@ annotate AnalyticsService.MaintOrdersAnalytics with
         Role    : #Axis1
     }],
     Dimensions          : [
-        'MaintPriorityType',
+        // 'MaintPriorityType',
         'MaintenanceOrderType',
     ],
     DimensionAttributes : [
         {
             $Type     : 'UI.ChartDimensionAttributeType',
             Dimension : 'MaintenanceOrderType',
-            Role      : #Series,
+            Role      : #Category,
         },
+        // {
+        //     $Type     : 'UI.ChartDimensionAttributeType',
+        //     Dimension : 'MaintPriorityType',
+        //     Role      : #Category
+        // }
+    ]
+}});
+
+annotate AnalyticsService.MaintOrdersAnalytics with
+@(UI : {
+    Chart#ByOrderType : {
+    $Type               : 'UI.ChartDefinitionType',
+    ChartType           : #Column,
+    Measures            : ['OrderCounter'],
+    MeasureAttributes   : [{
+        $Type   : 'UI.ChartMeasureAttributeType',
+        Measure : 'OrderCounter',
+        Role    : #Axis1
+    }],
+    Dimensions          : [
+        'MaintenanceOrderType',
+    ],
+    DimensionAttributes : [
         {
             $Type     : 'UI.ChartDimensionAttributeType',
-            Dimension : 'MaintPriorityType',
-            Role      : #Category
+            Dimension : 'MaintenanceOrderType',
+            Role      : #Category,
         }
     ]
 }});
@@ -58,18 +94,14 @@ annotate AnalyticsService.MaintOrdersAnalytics with
 annotate AnalyticsService.MaintOrders with @(UI : {
     SelectionFields : [
         MaintPriorityType,
-        MaintenanceOrderType
+        MaintenanceOrderType,
+        MaintenanceOrderType_Text
     ],
     LineItem        : [
         {Value : MaintenanceOrder},
         {Value : MaintPriority},
         {Value : MaintPriorityType},
-        {Value : MaintenanceOrderType}
+        {Value : MaintenanceOrderType},
+        {Value : MaintenanceOrderType_Text},
     ],
 });
-
-// annotate AnalyticsService.MaintOrders with {
-//     @Common.Text: 'MaintenanceOrderTypeText'
-//     @Common.TextArrangement : #TextOnly
-//     MaintenanceOrderType
-// };

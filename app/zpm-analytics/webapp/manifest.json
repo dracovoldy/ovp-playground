@@ -18,6 +18,17 @@
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "4.0"
                 }
+            },
+            "mainServicev2": {
+                "uri": "/v2/analytics/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
         },
         "crossNavigation": {
@@ -82,6 +93,14 @@
                     "autoExpandSelect": true,
                     "earlyRequests": true,
                     "groupId": "$direct"
+                }
+            },
+            "mainServicev2": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "operationMode": "Server",
+                    "synchronizationMode": "None"
                 }
             }
         },

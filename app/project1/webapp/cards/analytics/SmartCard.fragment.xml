@@ -5,6 +5,7 @@
         xmlns:core="sap.ui.core"
         xmlns:layout="sap.ui.layout"
         xmlns:comm="sap.suite.ui.commons"
+        xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
         xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
     <!-- Here you can put your Card's Content Area -->
 
@@ -23,6 +24,8 @@
         showChartTypeSelectionButton="true"
         showVariantManagement="true"
         showZoomButtons="false"
+        entitySet="MaintOrdersAnalytics"
+        data:chartQualifier="ByOrderType"
         >
     </smartchart:SmartChart>
     

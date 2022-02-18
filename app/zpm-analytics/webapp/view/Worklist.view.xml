@@ -20,7 +20,7 @@
                 id="table"
                 width="auto"
                 items="{
-                    path: '/MaintOrders',
+                    path: 'mainServicev2>/MaintOrders',
                     sorter: {
                         path: 'MaintenanceOrder',
                         descending: false
@@ -67,7 +67,7 @@
                         press=".onPress">
                         <cells>
                             <ObjectIdentifier
-                                title="{MaintenanceOrder}"/>
+                                title="{mainServicev2>MaintenanceOrder}"/>
                             <ObjectNumber />
                         </cells>
                     </ColumnListItem>

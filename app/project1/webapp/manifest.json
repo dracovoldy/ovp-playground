@@ -106,7 +106,9 @@
                 "dataSource": "mainService2",
                 "settings": {
                     "synchronizationMode": "None",
-                    "operationMode": "Server"
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
                 }
             },
             "mainService": {
@@ -134,8 +136,28 @@
         "globalFilterEntityType": "MaintOrders",
         "containerLayout": "resizable",
         "enableLiveFilter": true,
-        "considerAnalyticalParameters": false,
+        "considerAnalyticalParameters": true,
+        "chartSettings": {
+            "showDataLabel": true
+        },
         "cards": {
+            "card00": {
+                "model": "mainService",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "{{card00_title}}",
+                    "subTitle": "{{card00_subtitle}}",
+                    "entitySet": "MaintOrdersAnalytics",
+                    "navigation": "noHeaderNav",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ByOrderType",
+                    "stopResizing": false,
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 1,
+                        "showOnlyHeader": false
+                    }
+                }
+            },
             "card01": {
                 "model": "mainService",
                 "template": "project1.cards.analytics",
@@ -145,54 +167,6 @@
                     "defaultSpan": {
                         "rows": 1,
                         "cols": 1,
-                        "showOnlyHeader": false
-                    },
-                    "custom": {
-                        "height": 465
-                    }
-                }
-            },
-            "card02": {
-                "model": "mainService",
-                "template": "project1.cards.analytics",
-                "settings": {
-                    "title": "{{card02_titletest}}",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "defaultSpan": {
-                        "rows": 1,
-                        "cols": 2,
-                        "showOnlyHeader": false
-                    },
-                    "custom": {
-                        "height": 465
-                    }
-                }
-            },
-            "card03": {
-                "model": "mainService",
-                "template": "project1.cards.analytics",
-                "settings": {
-                    "title": "{{card03_titletest}}",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "defaultSpan": {
-                        "rows": 1,
-                        "cols": 1,
-                        "showOnlyHeader": false
-                    },
-                    "custom": {
-                        "height": 465
-                    }
-                }
-            },
-            "card04": {
-                "model": "mainService",
-                "template": "project1.cards.analytics",
-                "settings": {
-                    "title": "{{card04_titletest}}",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "defaultSpan": {
-                        "rows": 1,
-                        "cols": 3,
                         "showOnlyHeader": false
                     },
                     "custom": {
