@@ -15,7 +15,8 @@
   },
   "scripts": {
     "start": "cds run",
-    "watch": "cds watch --open project1/webapp/test/flpSandbox.html#project1-tile"
+    "watch": "cds watch --open project1/webapp/test/flpSandbox.html#project1-tile",
+    "app2": "cds watch --open zpm-analytics/webapp/test/flpSandbox.html#dcorechevronzpmanalytics-display"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
