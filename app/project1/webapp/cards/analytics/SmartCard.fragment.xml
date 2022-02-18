@@ -24,8 +24,6 @@
         showChartTypeSelectionButton="true"
         showVariantManagement="true"
         showZoomButtons="false"
-        entitySet="MaintOrdersAnalytics"
-        data:chartQualifier="ByOrderType"
         >
     </smartchart:SmartChart>
     

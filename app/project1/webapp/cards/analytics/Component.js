@@ -18,6 +18,9 @@ sap.ui.define(["sap/ovp/cards/generic/Component"],
                     "controllerName": {
                         "type": "string",
                         "defaultValue": "project1.cards.analytics.SmartCard"
+                    },
+                    "chartAnnotationPath": {
+                        "type": "string"
                     }
                 },
 

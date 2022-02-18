@@ -11,23 +11,21 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/analytics/",
-                "type": "OData",
-                "settings": {
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml",
-                    "odataVersion": "4.0"
-                }
-            },
-            "mainServicev2": {
                 "uri": "/v2/analytics/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
-                        "annotation"
+                        "annotation0"
                     ],
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
+                }
+            },
+            "annotation0": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation0.xml",
+                "settings": {
+                    "localUri": "annotations/annotation0.xml"
                 }
             }
         },
@@ -87,17 +85,7 @@
             "": {
                 "dataSource": "mainService",
                 "preload": true,
-                "settings": {
-                    "synchronizationMode": "None",
-                    "operationMode": "Server",
-                    "autoExpandSelect": true,
-                    "earlyRequests": true,
-                    "groupId": "$direct"
-                }
-            },
-            "mainServicev2": {
-                "dataSource": "mainService",
-                "preload": true,
+                "type": "sap.ui.model.odata.v2.ODataModel",
                 "settings": {
                     "operationMode": "Server",
                     "synchronizationMode": "None"

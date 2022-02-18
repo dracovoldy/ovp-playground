@@ -27,6 +27,13 @@ using {AnalyticsService} from './service';
 
 // };
 
+annotate AnalyticsService.MaintOrdersAnalytics with{
+    MaintenanceOrderType @(Common : {
+        Text            : MaintenanceOrderType_Text,
+        TextArrangement : #TextLast,
+    });
+};
+
 // Common Annotations
 annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {
     DataPoint                 : {
@@ -51,7 +58,7 @@ annotate AnalyticsService.MaintOrdersAnalytics with
         Role    : #Axis1
     }],
     Dimensions          : [
-        // 'MaintPriorityType',
+        'MaintPriorityType',
         'MaintenanceOrderType',
     ],
     DimensionAttributes : [
@@ -60,11 +67,11 @@ annotate AnalyticsService.MaintOrdersAnalytics with
             Dimension : 'MaintenanceOrderType',
             Role      : #Category,
         },
-        // {
-        //     $Type     : 'UI.ChartDimensionAttributeType',
-        //     Dimension : 'MaintPriorityType',
-        //     Role      : #Category
-        // }
+        {
+            $Type     : 'UI.ChartDimensionAttributeType',
+            Dimension : 'MaintPriorityType',
+            Role      : #Category
+        }
     ]
 }});
 

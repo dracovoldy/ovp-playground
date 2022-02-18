@@ -23,7 +23,6 @@ entity OrderTypes {
         OrderTypeText : String;
 }
 
-@Aggregation.ApplySupported.PropertyRestrictions : true
 view MaintOrderCube as
     select from MaintOrders
     join OrderTypes

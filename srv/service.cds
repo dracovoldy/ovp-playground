@@ -4,12 +4,11 @@ service AnalyticsService {
 
     entity MaintOrders as projection on model.MaintOrders;
     entity OrderTypes as projection on model.OrderTypes;
+
+    @Aggregation.ApplySupported.PropertyRestrictions : true
     entity MaintOrdersAnalytics as projection on model.MaintOrderCube {
         key MaintenanceOrder,
             @Analytics.Dimension          : true
-            // @Consumption.groupWithElement : 'MaintenanceOrderType_Text'
-            @Common.Text : 'MaintenanceOrderType_Text'
-            @Common.TextArrangement: #TextFirst
             MaintenanceOrderType,
             MaintenanceOrderType_Text,
 

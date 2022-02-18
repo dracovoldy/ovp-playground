@@ -2,6 +2,8 @@
     controllerName="dcore.chevron.zpmanalytics.controller.Worklist"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartchart="sap.ui.comp.smartchart"
+    xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:semantic="sap.f.semantic">
 
     <semantic:SemanticPage
@@ -16,7 +18,26 @@
         </semantic:titleHeading>
 
         <semantic:content>
-            <Table
+            <smartchart:SmartChart
+                persistencyKey="schart"
+                enableAutoBinding="true"
+                useVariantManagement="false"
+                useChartPersonalisation="true"
+                showFullScreenButton="true"
+                selectionMode="Multi"
+                showChartTooltip="true"
+                showDrillBreadcrumbs="false"
+                showDetailsButton="false"
+                showDrillButtons="false"
+                showSemanticNavigationButton="true"
+                showChartTypeSelectionButton="true"
+                showVariantManagement="true"
+                showZoomButtons="false"
+                entitySet="MaintOrdersAnalytics"
+                data:chartQualifier="ByOrderType"
+                >
+            </smartchart:SmartChart>
+            <!-- <Table
                 id="table"
                 width="auto"
                 items="{
@@ -72,7 +93,7 @@
                         </cells>
                     </ColumnListItem>
                 </items>
-            </Table>
+            </Table> -->
         </semantic:content>
 
         <semantic:sendEmailAction>

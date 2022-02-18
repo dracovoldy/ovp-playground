@@ -17,18 +17,21 @@
                 "uri": "/analytics/",
                 "type": "OData",
                 "settings": {
-                    "odataVersion": "4.0"
+                    "odataVersion": "4.0",
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml"
                 }
             },
             "mainService": {
                 "uri": "/v2/analytics/",
                 "type": "OData",
                 "settings": {
+                    "odataVersion": "2.0",
                     "annotations": [
-                        "annotation"
+                        "annotation",
+                        "annotation0"
                     ],
-                    "localUri": "localService/metadata.xml",
-                    "odataVersion": "2.0"
+                    "localUri": "localService/metadata.xml"
                 }
             },
             "annotation": {
@@ -36,6 +39,13 @@
                 "uri": "annotations/annotation.xml",
                 "settings": {
                     "localUri": "annotations/annotation.xml"
+                }
+            },
+            "annotation0": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation0.xml",
+                "settings": {
+                    "localUri": "annotations/annotation0.xml"
                 }
             }
         },
@@ -104,11 +114,12 @@
             },
             "mainService2": {
                 "dataSource": "mainService2",
+                "preload": true,
                 "settings": {
                     "synchronizationMode": "None",
-					"operationMode": "Server",
-					"autoExpandSelect": true,
-					"earlyRequests": true
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
                 }
             },
             "mainService": {
@@ -164,6 +175,7 @@
                 "settings": {
                     "title": "{{card01_title}}",
                     "entitySet": "MaintOrdersAnalytics",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ByOrderType",
                     "defaultSpan": {
                         "rows": 1,
                         "cols": 1,

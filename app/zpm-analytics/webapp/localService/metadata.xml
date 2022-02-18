@@ -3,9 +3,6 @@
     <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
         <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
     </edmx:Reference>
-    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
-        <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1"/>
-    </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
         <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
     </edmx:Reference>
@@ -28,6 +25,7 @@
                 </Key>
                 <Property Name="MaintenanceOrder" Type="Edm.String" Nullable="false"/>
                 <Property Name="MaintenanceOrderType" Type="Edm.String"/>
+                <Property Name="MaintenanceOrderType_Text" Type="Edm.String"/>
                 <Property Name="MaintPriority" Type="Edm.String"/>
                 <Property Name="MaintPriorityType" Type="Edm.String"/>
             </EntityType>
@@ -44,7 +42,7 @@
                 </Key>
                 <Property Name="MaintenanceOrder" Type="Edm.String" Nullable="false"/>
                 <Property Name="MaintenanceOrderType" Type="Edm.String"/>
-                <Property Name="OrderTypeText" Type="Edm.String"/>
+                <Property Name="MaintenanceOrderType_Text" Type="Edm.String"/>
                 <Property Name="MaintPriority" Type="Edm.String"/>
                 <Property Name="MaintPriorityType" Type="Edm.String"/>
                 <Property Name="OrderCounter" Type="Edm.Int32"/>
@@ -54,6 +52,7 @@
                     <Collection>
                         <PropertyPath>MaintPriorityType</PropertyPath>
                         <PropertyPath>MaintenanceOrderType</PropertyPath>
+                        <PropertyPath>MaintenanceOrderType_Text</PropertyPath>
                     </Collection>
                 </Annotation>
                 <Annotation Term="UI.LineItem">
@@ -70,6 +69,9 @@
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="MaintenanceOrderType"/>
                         </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintenanceOrderType_Text"/>
+                        </Record>
                     </Collection>
                 </Annotation>
             </Annotations>
@@ -79,6 +81,9 @@
             <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrderType">
                 <Annotation Term="Common.Label" String="Order Type"/>
             </Annotations>
+            <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrderType_Text">
+                <Annotation Term="Common.Label" String="Order Type Text"/>
+            </Annotations>
             <Annotations Target="AnalyticsService.MaintOrders/MaintPriority">
                 <Annotation Term="Common.Label" String="Priority"/>
             </Annotations>
@@ -86,9 +91,21 @@
                 <Annotation Term="Common.Label" String="Priority Type"/>
             </Annotations>
             <Annotations Target="AnalyticsService.MaintOrdersAnalytics">
+                <Annotation Term="UI.DataPoint">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" Path="OrderCounter"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
                 <Annotation Term="UI.Chart">
                     <Record Type="UI.ChartDefinitionType">
-                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
                         <PropertyValue Property="Measures">
                             <Collection>
                                 <PropertyPath>OrderCounter</PropertyPath>
@@ -104,7 +121,6 @@
                         </PropertyValue>
                         <PropertyValue Property="Dimensions">
                             <Collection>
-                                <PropertyPath>MaintPriorityType</PropertyPath>
                                 <PropertyPath>MaintenanceOrderType</PropertyPath>
                             </Collection>
                         </PropertyValue>
@@ -112,14 +128,46 @@
                             <Collection>
                                 <Record Type="UI.ChartDimensionAttributeType">
                                     <PropertyValue Property="Dimension" PropertyPath="MaintenanceOrderType"/>
-                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
-                                </Record>
-                                <Record Type="UI.ChartDimensionAttributeType">
-                                    <PropertyValue Property="Dimension" PropertyPath="MaintPriorityType"/>
                                     <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="ByOrderType">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>OrderCounter</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="OrderCounter"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>MaintenanceOrderType</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="MaintenanceOrderType"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record Type="Aggregation.ApplySupportedType">
+                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
                     </Record>
                 </Annotation>
             </Annotations>
@@ -134,19 +182,18 @@
                 <Annotation Term="Common.Label" String="Maintenance Order #"/>
             </Annotations>
             <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintenanceOrderType">
-                <Annotation Term="Analytics.Dimension" Bool="true"/>
+                <Annotation Term="Common.Text" String="MaintenanceOrderType_Text">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
+                </Annotation>
                 <Annotation Term="Common.Label" String="Order Type"/>
             </Annotations>
             <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintPriority">
-                <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Priority"/>
             </Annotations>
             <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintPriorityType">
-                <Annotation Term="Analytics.Dimension" Bool="true"/>
                 <Annotation Term="Common.Label" String="Priority Type"/>
             </Annotations>
             <Annotations Target="AnalyticsService.MaintOrdersAnalytics/OrderCounter">
-                <Annotation Term="Analytics.Measure" Bool="true"/>
                 <Annotation Term="Aggregation.default" EnumMember="Aggregation.defaultType/SUM"/>
                 <Annotation Term="Core.Computed" Bool="true"/>
                 <Annotation Term="Common.Label" String="Number of Orders"/>
