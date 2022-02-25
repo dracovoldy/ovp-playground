@@ -1,0 +1,1349 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.6.4"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "API_MAINTNOTIFICATION": {
+      "kind": "service",
+      "@cds.external": true
+    },
+    "API_MAINTNOTIFICATION.MaintenanceNotification": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.label": "Maintenance Notification",
+      "@sap.content.version": "1",
+      "elements": {
+        "MaintenanceNotification": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Number that identifies the notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification",
+          "@sap.quickinfo": "Notification Number",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifInternalID": {
+          "type": "cds.String",
+          "length": 22,
+          "doc": "Number under which the maintenance notification is stored in the status management",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Object number",
+          "@sap.quickinfo": "Object Number for Status Management",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "NotificationText": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Short description of the contents of a notification.",
+          "@sap.label": "Description",
+          "@sap.quickinfo": "Short Text"
+        },
+        "MaintPriority": {
+          "type": "cds.String",
+          "length": 1,
+          "doc": "The key in this field indicates the importance of the processing of the order/notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MaintPriorityDesc",
+          "@sap.label": "Priority"
+        },
+        "NotificationType": {
+          "type": "cds.String",
+          "length": 2,
+          "doc": "Key that enables notifications to be differentiated and grouped according to notification category, notification origin, and other criteria.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification Type",
+          "@sap.updatable": "false"
+        },
+        "NotifProcessingPhase": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification Phase",
+          "@sap.quickinfo": "Notification Processing Phase",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "NotifProcessingPhaseDesc": {
+          "type": "cds.String",
+          "length": 60,
+          "doc": "This text appears when fixed values are displayed in the F4 help. It explains the possible input values.\n\nSeeTask-Oriented InstructionsReference Documentation for Semantic Properties of Domains",
+          "@sap.label": "Short Descript.",
+          "@sap.quickinfo": "Short Text for Fixed Values",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintPriorityDesc": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Priority Text",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "CreationDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.label": "Created On",
+          "@sap.quickinfo": "Date on Which Record Was Created",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "LastChangeTime": {
+          "type": "cds.Time",
+          "doc": "Time at which the current record was last changed.",
+          "@sap.label": "Time of Change",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "LastChangeDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.label": "Changed On",
+          "@sap.quickinfo": "Last Changed On",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp",
+          "doc": "The UTC time stamp is the date and time relative to UTC (Universal Coordinated Time).",
+          "@sap.label": "Short Time Stamp",
+          "@sap.quickinfo": "UTC Time Stamp in Short Form (YYYYMMDDhhmmss)",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "CreationTime": {
+          "type": "cds.Time",
+          "@sap.label": "Created At",
+          "@sap.quickinfo": "Time at Which Record Was Added",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "ReportedByUser": {
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Name of the person who reported the notification",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "ReporterFullName",
+          "@sap.label": "Reported By",
+          "@sap.quickinfo": "Name of Person Reporting Notification"
+        },
+        "ReporterFullName": {
+          "type": "cds.String",
+          "length": 80,
+          "doc": "This field contains the complete personal name. It is usually generated from the various name components (without title).",
+          "@sap.label": "Full Name",
+          "@sap.quickinfo": "Full Name of Person",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "PersonResponsible": {
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Specifies the internal identification number of the person who is responsible for processing the job.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "PersonResponsibleName",
+          "@sap.label": "Person Resp. ID",
+          "@sap.quickinfo": "Person Responsible ID"
+        },
+        "MalfunctionEffect": {
+          "type": "cds.String",
+          "length": 1,
+          "doc": "Effect of the problem or malfunction on the operation of the affected system",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Effect",
+          "@sap.quickinfo": "Effect on Operation"
+        },
+        "MalfunctionEffectText": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Text for key which describes the effect of the problem or malfunction on the operation of the system",
+          "@sap.label": "Effect",
+          "@sap.quickinfo": "Text - Effect on Operation",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MalfunctionStartDate": {
+          "type": "cds.Date",
+          "doc": "Date of day on which the malfunction started, or on which the problem occurred.",
+          "@sap.display.format": "Date",
+          "@sap.label": "Malfunction Start",
+          "@sap.quickinfo": "Start of Malfunction (Date)"
+        },
+        "MalfunctionStartTime": {
+          "type": "cds.Time",
+          "doc": "Time at which the malfunction started or at which the problem occurred",
+          "@sap.label": "Mal. Start (T.)",
+          "@sap.quickinfo": "Start of Malfunction (Time)"
+        },
+        "MalfunctionEndDate": {
+          "type": "cds.Date",
+          "doc": "Date of day on which the problem was solved, or on which the malfunction ended.",
+          "@sap.display.format": "Date",
+          "@sap.label": "Malfunction End",
+          "@sap.quickinfo": "End of Malfunction (Date)"
+        },
+        "MalfunctionEndTime": {
+          "type": "cds.Time",
+          "doc": "Time at which the malfunction ended, or at which the problem was solved",
+          "@sap.label": "Malfunction End",
+          "@sap.quickinfo": "End of Malfunction (Time)"
+        },
+        "MaintNotificationCatalog": {
+          "type": "cds.String",
+          "length": 1,
+          "doc": "Key for the catalog type that defines the coding.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Catalog Coding",
+          "@sap.quickinfo": "Catalog Type - Coding",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotificationCode": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Key from the assigned catalog that is used to code the notification.\n\nFor example, you can use the coding to classify the notification according to the problem type.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Coding Code",
+          "@sap.quickinfo": "Coding"
+        },
+        "MaintNotificationCodeGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "doc": "Key for the code group that contains the codes for coding the notification.\n\nFor example, you can use the coding for general classification of the notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Code Group",
+          "@sap.quickinfo": "Code Group - Coding"
+        },
+        "CatalogProfile": {
+          "type": "cds.String",
+          "length": 9,
+          "doc": "Key of the catalog profile that is intended as the basis for the notification.\n\nIn Plant Maintenance and Customer Service, the catalog profile is proposed in the notification if:A notification is created without a reference object orThe reference object entered (equipment or functional location) does not contain a catalog profile",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Catalog Profile",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "NotificationCreationDate": {
+          "type": "cds.Date",
+          "doc": "Date at which the notification was created.",
+          "@sap.display.format": "Date",
+          "@sap.label": "Notification Date",
+          "@sap.quickinfo": "Date of Notification"
+        },
+        "NotificationCreationTime": {
+          "type": "cds.Time",
+          "doc": "Time at which the notification was created.",
+          "@sap.label": "Notification Time",
+          "@sap.quickinfo": "Time of Notification"
+        },
+        "NotificationTimeZone": {
+          "type": "cds.String",
+          "length": 6,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notif. Time Zone",
+          "@sap.quickinfo": "Time Zone for Notification",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "RequiredStartDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.label": "Required Start Date"
+        },
+        "RequiredStartTime": {
+          "type": "cds.Time",
+          "doc": "Time at which the processing of the notification is to start",
+          "@sap.label": "Req. start time",
+          "@sap.quickinfo": "Required Start Time"
+        },
+        "RequiredEndDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.label": "Required End Date"
+        },
+        "RequiredEndTime": {
+          "type": "cds.Time",
+          "doc": "Time by which the processing of the notification is to be completed",
+          "@sap.label": "Req. end time",
+          "@sap.quickinfo": "Required End Time"
+        },
+        "LatestAcceptableCompletionDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.label": "Final Due Date"
+        },
+        "MaintenanceObjectIsDown": {
+          "type": "cds.Boolean",
+          "doc": "Indicator that informs you when a machine has broken down",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Breakdown",
+          "@sap.quickinfo": "Breakdown Indicator"
+        },
+        "MaintNotificationLongText": {
+          "type": "cds.LargeString",
+          "@sap.label": "Long Text",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifLongTextForEdit": {
+          "type": "cds.String",
+          "length": 1333,
+          "@sap.label": "Long Text"
+        },
+        "TechnicalObject": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Technical Object"
+        },
+        "TechObjIsEquipOrFuncnlLoc": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Tech. Obj. Type",
+          "@sap.quickinfo": "Technical Object Type"
+        },
+        "TechnicalObjectLabel": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Technical Object",
+          "@sap.quickinfo": "Technical Object Identifier",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenancePlanningPlant": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Key that identifies the maintenance planning plant.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "PlantName",
+          "@sap.label": "Planning Plant",
+          "@sap.quickinfo": "Maintenance Planning Plant"
+        },
+        "MaintenancePlannerGroup": {
+          "type": "cds.String",
+          "length": 3,
+          "doc": "Key that uniquely identifies the planner group in Customer Service or Plant Maintenance.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MaintenancePlannerGroupName",
+          "@sap.label": "Maint. Planner Group",
+          "@sap.quickinfo": "Planner Group for Customer Service and Plant Maintenance"
+        },
+        "PlantSection": {
+          "type": "cds.String",
+          "length": 3,
+          "doc": "Number which clearly identifies a plant section.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "PlantSectionPersonRespName",
+          "@sap.label": "Plant Section"
+        },
+        "ABCIndicator": {
+          "type": "cds.String",
+          "length": 1,
+          "doc": "An indicator that is assigned by the procedure of ABC analysis.\n\nThe following ABC indicators are possible:A - ImportantB - Less importantC - Relatively unimportantAccording to these criteria, &quot;A&quot; materials are those materials that are of greatest importance for the production operations of a company.Examples of use for ABC indicators are vendor master records, material master records, and master records of technical objects.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "ABCIndicatorDesc",
+          "@sap.label": "ABC Indicator",
+          "@sap.quickinfo": "ABC Indicator for Technical Object",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "SuperiorTechnicalObject": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Technical Object",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "SuperiorTechnicalObjectName": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Describes the technical object, which can be either a piece of equipment or a functional location.",
+          "@sap.label": "Tech. Obj. Desc",
+          "@sap.quickinfo": "Technical Object Description",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "SuperiorObjIsEquipOrFuncnlLoc": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Tech. Obj. Type",
+          "@sap.quickinfo": "Technical Object Type",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "SuperiorTechnicalObjectLabel": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Technical Object",
+          "@sap.quickinfo": "Technical Object Identifier",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "ManufacturerPartTypeName": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.label": "Model number",
+          "@sap.quickinfo": "Manufacturer model number",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "TechObjIsEquipOrFuncnlLocDesc": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "TObj.Type Desc.",
+          "@sap.quickinfo": "Description of Technical Object Type",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "FunctionalLocation": {
+          "type": "cds.String",
+          "length": 30,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Object ID",
+          "@sap.quickinfo": "Object ID of Functional Location or Equipment",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "FunctionalLocationLabelName": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "The label is used to identify a functional location from a user's point of view.\n\nThe functional location label can be changed where necessary. The system then automatically creates a labeling history and prevents historical labels from being reused without this first being checked. The labeling history also enables the interpretation of historical location labels in non-changeable documents outside the SAP System.You can assign one primary and several alternative labels to a functional location.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Functional Location",
+          "@sap.quickinfo": "Functional Location Label",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "TechnicalObjectDescription": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Describes the technical object, which can be either a piece of equipment or a functional location.",
+          "@sap.label": "Tech. Obj. Desc",
+          "@sap.quickinfo": "Technical Object Description",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "AssetLocation": {
+          "type": "cds.String",
+          "length": 10,
+          "doc": "The key in this field indicates a location within a plant.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "LocationName",
+          "@sap.label": "Location",
+          "@sap.quickinfo": "Location of maintenance object"
+        },
+        "LocationName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Location Name",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "BusinessArea": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Key that uniquely identifies a business area.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Business Area",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "CompanyCode": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "The company code is an organizational unit within financial accounting.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Company Code",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "TechnicalObjectCategory": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Tech. Obj. Category",
+          "@sap.quickinfo": "Technical Object Category",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "TechnicalObjectType": {
+          "type": "cds.String",
+          "length": 10,
+          "doc": "Key that describes the type of technical object.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Object Type",
+          "@sap.quickinfo": "Type of Technical Object",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MainWorkCenterPlant": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Key uniquely identifying a plant.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MainWorkCenterPlantName",
+          "@sap.label": "Plant"
+        },
+        "MainWorkCenter": {
+          "type": "cds.String",
+          "length": 8,
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MainWorkCenterText",
+          "@sap.label": "Work Center"
+        },
+        "PlantName": {
+          "type": "cds.String",
+          "length": 30,
+          "@sap.label": "Plant Name",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenancePlannerGroupName": {
+          "type": "cds.String",
+          "length": 18,
+          "@sap.label": "Planner Group Name",
+          "@sap.quickinfo": "Name of the Maintenance Planner Group",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenancePlant": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Number which clearly identifies a maintenance plant.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MaintenancePlantName",
+          "@sap.label": "Maintenance Plant"
+        },
+        "LocationDescription": {
+          "type": "cds.String",
+          "length": 50,
+          "@sap.label": "Current Location",
+          "@sap.quickinfo": "Description of Current Location"
+        },
+        "MainWorkCenterText": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Work Center Text",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MainWorkCenterPlantName": {
+          "type": "cds.String",
+          "length": 30,
+          "@sap.label": "Plant Name",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenancePlantName": {
+          "type": "cds.String",
+          "length": 30,
+          "@sap.label": "Plant Name",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "PlantSectionPersonRespName": {
+          "type": "cds.String",
+          "length": 14,
+          "doc": "Group of employees that is responsible for production in this company area. This group of employees serves as a contact for the workers in Maintenance Planning and Processing.",
+          "@sap.label": "EmplGrp Responsible",
+          "@sap.quickinfo": "Group of Employees Responsible for Company Area",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "ABCIndicatorDesc": {
+          "type": "cds.String",
+          "length": 20,
+          "doc": "Describes the ABC indicator of the technical object.",
+          "@sap.label": "ABC Ind. Descr.",
+          "@sap.quickinfo": "Description of ABC Indicator of Technical Object",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "PersonResponsibleName": {
+          "type": "cds.String",
+          "length": 35,
+          "doc": "Specifies the name of the person who is responsible for processing the job.",
+          "@sap.label": "Person Responsible",
+          "@sap.quickinfo": "Person Responsible Name",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "@sap.sortable": "false",
+          "@sap.filterable": "false"
+        },
+        "MaintenanceOrder": {
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Key that uniquely identifies an order within a client.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Order",
+          "@sap.quickinfo": "Order Number"
+        },
+        "MaintenanceOrderType": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Key that differentiates orders according to their purpose.\n\nThe order type contains a range of parameters which affect the way the order is processed.For example, using the order type, you can specifyThe number ranges to be used for the ordersWhich criteria are used when selecting a routingHow the order is to be costed.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Order Type",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "ConcatenatedActiveSystStsName": {
+          "type": "cds.String",
+          "length": 224,
+          "@sap.label": "Concatenated System Status",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "@sap.sortable": "false",
+          "@sap.filterable": "false"
+        },
+        "MaintenanceActivityType": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Activity Type",
+          "@sap.quickinfo": "Maintenance Activity Type"
+        },
+        "MaintObjDowntimeDurationUnit": {
+          "type": "cds.String",
+          "length": 3,
+          "doc": "Unit of time entered to record the length of machine downtime\n\nIf you prefer to make the entry using a different unit of time, you must overwrite the unit of time displayed with the new unit and press ENTER. The system then converts the downtime.Length of downtime: 30Einheit: Minutes",
+          "@sap.label": "Breakdown durtn unit",
+          "@sap.quickinfo": "Unit for Breakdown Duration",
+          "@sap.semantics": "unit-of-measure"
+        },
+        "MaintObjectDowntimeDuration": {
+          "type": "cds.Double",
+          "doc": "Time entered to record the length of machine downtime\n\nIf you have entered from when to when the machine breakdown occurred, the system automatically calculates the entry in this field.",
+          "@sap.label": "Breakdown Duration"
+        },
+        "MaintenancePlan": {
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Number identifying a maintenance plan.\n\nIn create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Maintenance Plan",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenanceItem": {
+          "type": "cds.String",
+          "length": 16,
+          "doc": "Number identifying a maintenance item",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Maintenance Item",
+          "@sap.quickinfo": "Maintenance item",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "TaskListGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "doc": "Key identifying a group.\n\nYou can use groups, for example, to identify two routings that have different production steps for one material.Enter the group to which you want to restrict the selection.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Group",
+          "@sap.quickinfo": "Key for Task List Group",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "TaskListGroupCounter": {
+          "type": "cds.String",
+          "length": 2,
+          "doc": "This key and the task list group uniquely identify a task list.\n\nIn Production Planning and Control, for example, it serves to identify alternative production processes in task lists and is used to make a distinction between similar task lists.The group counter can be used to identify different lot-size ranges, for example.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Group Counter",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenancePlanCallNumber": {
+          "type": "cds.Integer",
+          "doc": "Continual numbers of the maintenance call.",
+          "@sap.label": "MntPlan Call No.",
+          "@sap.quickinfo": "Maintenance Plan Call Number",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintenanceTaskListType": {
+          "type": "cds.String",
+          "length": 1,
+          "doc": "Key which classifies task lists according to their functionality.\n\nRoutings are defined under the following task list types:RoutingsReference operation setsMaster recipeGeneral maintenance task listEquipment task listInspection planTask list for funct. location",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Task List Type",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "NotificationReferenceDate": {
+          "type": "cds.Date",
+          "doc": "Date at which the equipment location and account assignment data are read and stored in the maintenance history upon completion of the PM notification. The PM notifications are sorted in the history according to this date and the reference time, which together form the reference time.",
+          "@sap.display.format": "Date",
+          "@sap.label": "Reference Date",
+          "@sap.quickinfo": "Notification Reference Date"
+        },
+        "NotificationReferenceTime": {
+          "type": "cds.Time",
+          "doc": "Time that, together with the reference date forms the reference time, the system uses to create closed notifications and orders for PM and customer service.",
+          "@sap.label": "Reference Time",
+          "@sap.quickinfo": "Notification Reference Time"
+        },
+        "NotificationCompletionDate": {
+          "type": "cds.Date",
+          "doc": "Date at which the notification was or is to be completed",
+          "@sap.display.format": "Date",
+          "@sap.label": "Completion by Date",
+          "@sap.quickinfo": "Date for Notification Completion",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "CompletionTime": {
+          "type": "cds.Time",
+          "doc": "Time at which the notification is or was completed.\n\nThis time is proposed on the basis of the reference time.",
+          "@sap.label": "Completion Time",
+          "@sap.quickinfo": "Completion Time of Notification",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "AssetRoom": {
+          "type": "cds.String",
+          "length": 8,
+          "doc": "In this field you can designate a specific room for the asset.\n\nThe field is used for informational purposes, and can be used as a sort criterion in reports (for example, the inventory list).",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Room"
+        },
+        "MaintNotifExtReferenceNumber": {
+          "type": "cds.String",
+          "length": 20,
+          "doc": "You can assign a notification an external reference number that is not checked by the system.\n\nIn quality notifications, the reference number contains the complaint number of the customer who is filing the complaint.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Reference number",
+          "@sap.quickinfo": "External Reference Number"
+        },
+        "MaintNotifRejectionReasonCode": {
+          "type": "cds.String",
+          "length": 3,
+          "doc": "Indicates a unique code that identifies the reason for rejection of a maintenance request or for sending the maintenance request to the initiator for receiving additional information.\n\nDuring the screening phase, the maintenance request is reviewed to ensure that all required details are available in the maintenance request for successful and quick resolution of the request.If information in the maintenance request is incomplete, you can send it back to the initiator.Using reason codes, you can communicate why a maintenance request was rejected or sent back for receiving additional information.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Reason Code",
+          "@sap.quickinfo": "Maintenance Reason Code",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifRejectionRsnCodeTxt": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Describes a reason code.\n\nYou can enter a description for a reason code.",
+          "@sap.label": "Reason Code Desc",
+          "@sap.quickinfo": "Maintenance Reason Code Description",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifDetectionCatalog": {
+          "type": "cds.String",
+          "length": 2,
+          "doc": "Indicates a profile to which one or more detection method groups can be added.\n\nYou can add one or more detection method groups to a detection method profile. Detection method profiles can be assigned to notifications.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Detection Meth Prfl",
+          "@sap.quickinfo": "Detection Method Profile",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifDetectionCode": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "Indicates an activity that is used to discover a failure.\n\nDetection method is an activity using which a failure is discovered. It helps in analyzing the effect of maintenance. It also helps in determining the differences between failures that are detected during regular maintenance and failures that are casual occurrences.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MaintNotifDetectionCodeText",
+          "@sap.label": "Detection Method"
+        },
+        "MaintNotifDetectionCodeText": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Detection Meth Desc",
+          "@sap.quickinfo": "Detection Method Description",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifDetectionCodeGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "doc": "Indicates a category to which detection methods belong.\n\nEach detection method belongs to a detection method group. Detection methods are grouped depending on when the failure was discovered.The predefined detection method groups are as follows:Scheduled activitiesContinuous monitoringCasual occurrencesOther",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "MaintNotifDetectionCodeGrpTxt",
+          "@sap.label": "Detection Meth Grp",
+          "@sap.quickinfo": "Detection Method Group"
+        },
+        "MaintNotifDetectionCodeGrpTxt": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Dtctn Meth Grp Desc",
+          "@sap.quickinfo": "Detection Method Group Description",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifProcessPhaseCode": {
+          "type": "cds.String",
+          "length": 2,
+          "doc": "A distinct stage in the end-to-end process of a maintenance work. These are fixed values that are used mainly for reporting and analytics. A phase is automatically determined for a notification, order, and operation when the system status is changed.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "EAMProcessPhaseCodeDesc",
+          "@sap.label": "Process Phase",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifProcessSubPhaseCode": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "A distinct stage within a phase that reflects the state of a maintenance work. A subphase is automatically determined for a notification, order, and operation when the system status is changed.",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "EAMProcessSubPhaseCodeDesc",
+          "@sap.label": "Process Subphase",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "EAMProcessPhaseCodeDesc": {
+          "type": "cds.String",
+          "length": 60,
+          "doc": "This text appears when fixed values are displayed in the F4 help. It explains the possible input values.\n\nSeeTask-Oriented InstructionsReference Documentation for Semantic Properties of Domains",
+          "@sap.label": "Short Descript.",
+          "@sap.quickinfo": "Short Text for Fixed Values",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "EAMProcessSubPhaseCodeDesc": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Subphase Description",
+          "@sap.quickinfo": "Description of Overall Process Subphase",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "to_Item": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotificationItem",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_Item",
+                "MaintenanceNotification"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceNotification"
+              ]
+            }
+          ]
+        },
+        "to_Partner": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotificationPartner",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_Partner",
+                "MaintenanceNotification"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceNotification"
+              ]
+            }
+          ]
+        }
+      },
+      "actions": {
+        "CompleteMaintNotification": {
+          "kind": "action",
+          "params": {
+            "NotificationReferenceDate": {
+              "type": "cds.Date",
+              "doc": "Reference Date",
+              "@sap.label": "Reference Date",
+              "@sap.display.format": "Date"
+            },
+            "NotificationReferenceTime": {
+              "type": "cds.Time",
+              "doc": "Reference Time",
+              "@sap.label": "Reference Time"
+            }
+          },
+          "returns": {
+            "type": "API_MAINTNOTIFICATION.MaintenanceNotification"
+          }
+        },
+        "SetMaintNotifToInProcess": {
+          "kind": "action",
+          "returns": {
+            "type": "API_MAINTNOTIFICATION.MaintenanceNotification"
+          }
+        }
+      }
+    },
+    "API_MAINTNOTIFICATION.MaintenanceNotificationItem": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.label": "Maintenance Notification Item",
+      "@sap.content.version": "1",
+      "elements": {
+        "MaintenanceNotification": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Number that identifies the notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification",
+          "@sap.quickinfo": "Notification Number",
+          "@sap.updatable": "false"
+        },
+        "MaintenanceNotificationItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Item",
+          "@sap.quickinfo": "Item Number in Item Record"
+        },
+        "MaintNotifItemText": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Short description of the notification item",
+          "@sap.label": "Item Text",
+          "@sap.quickinfo": "Notification Item Short Text"
+        },
+        "MaintNotifDamageCodeGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Damage Code Group"
+        },
+        "MaintNotifDamageCodeGroupName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Group Text",
+          "@sap.quickinfo": "Text for Code Group",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotificationDamageCode": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Damage Code"
+        },
+        "MaintNotifDamageCodeName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Text",
+          "@sap.quickinfo": "Text for Code",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifObjPrtCodeGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Obj. Part Code Group",
+          "@sap.quickinfo": "Object Part Code Group"
+        },
+        "MaintNotifObjPrtCodeGroupName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Group Text",
+          "@sap.quickinfo": "Text for Code Group",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifObjPrtCode": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Object Part Code"
+        },
+        "MaintNotifObjPrtCodeName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Text",
+          "@sap.quickinfo": "Text for Code",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "IsDeleted": {
+          "type": "cds.Boolean",
+          "doc": "The data record is marked for deletion if the indicator is set.",
+          "@sap.label": "Delete",
+          "@sap.quickinfo": "Delete Data Record",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "to_ItemActivity": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintNotificationItemActivity",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_ItemActivity",
+                "MaintenanceNotificationItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceNotificationItem"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "to_ItemActivity",
+                "MaintenanceNotification"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceNotification"
+              ]
+            }
+          ]
+        },
+        "to_ItemCause": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintNotificationItemCause",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_ItemCause",
+                "MaintenanceNotificationItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceNotificationItem"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "to_ItemCause",
+                "MaintenanceNotification"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceNotification"
+              ]
+            }
+          ]
+        },
+        "to_Notif": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotification",
+          "keys": []
+        }
+      }
+    },
+    "API_MAINTNOTIFICATION.MaintenanceNotificationPartner": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.label": "Maintenance Notification Partner",
+      "@sap.content.version": "1",
+      "elements": {
+        "MaintenanceNotification": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Number that identifies the notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification",
+          "@sap.quickinfo": "Notification Number",
+          "@sap.updatable": "false"
+        },
+        "PartnerFunction": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2,
+          "doc": "You can convert the keys that identify the partner functions in the original German system to language-specific keys. The converted keys then appear according to the language in which the user logs on.\n\nEnter the original German key of the partner function for which you want to provide a language-specific key.The customer who orders goods, the sold-to party, is called the &quot;Auftraggeber&quot; in the German system. The original German key is &quot;AG&quot;. You could, for example, convert this to an English key: &quot;SP&quot;.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Partner Function"
+        },
+        "NotificationPartnerObjectNmbr": {
+          "key": true,
+          "type": "cds.String",
+          "length": 6,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Counter",
+          "@sap.quickinfo": "Counter for differentiation 6-digit"
+        },
+        "Partner": {
+          "type": "cds.String",
+          "length": 12,
+          "doc": "12-figure number, that identifies explicitly the partner.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Partner"
+        },
+        "to_Notif": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotification",
+          "keys": []
+        }
+      }
+    },
+    "API_MAINTNOTIFICATION.MaintNotificationItemActivity": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.label": "Maintenance Notification Item Activity",
+      "@sap.content.version": "1",
+      "elements": {
+        "MaintNotificationActivity": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "doc": "You can record actions which refer to both the notification header and an item.\n\nThe actions are numbered consecutively, i.e. all actions for the entire notification.",
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Activity",
+          "@sap.quickinfo": "Consecutive Number of Activity"
+        },
+        "MaintenanceNotification": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Number that identifies the notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification",
+          "@sap.quickinfo": "Notification Number",
+          "@sap.updatable": "false"
+        },
+        "MaintenanceNotificationItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Item",
+          "@sap.quickinfo": "Item Number in Item Record",
+          "@sap.updatable": "false"
+        },
+        "MaintNotifActivitySortNumber": {
+          "type": "cds.String",
+          "length": 4,
+          "doc": "You can assign any desired activity numbers. The system automatically proposes the highest previously assigned number + 1 as the sort number.\n\nIf you enter numbers manually, you can enter the same number for several items, since the system does not check whether these numbers already exist.",
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Activity Sort Number",
+          "@sap.quickinfo": "Sort Number for Activity"
+        },
+        "MaintNotifActyTxt": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Short description of the activity carried out to repair the malfunction or to fulfill the maintenance request",
+          "@sap.label": "Activity Text"
+        },
+        "MaintNotifActivityCodeGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Activity Code Group"
+        },
+        "NotifActivityCodeGroupText": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Group Text",
+          "@sap.quickinfo": "Text for Code Group",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotificationActivityCode": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Activity Code"
+        },
+        "NotifActivityCodeText": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Text",
+          "@sap.quickinfo": "Text for Code",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "PlannedStartDate": {
+          "type": "cds.Date",
+          "doc": "Deadline, at which the actvity is to be started.",
+          "@sap.display.format": "Date",
+          "@sap.label": "Start Date",
+          "@sap.quickinfo": "Activity Start Date"
+        },
+        "PlannedStartTime": {
+          "type": "cds.Time",
+          "doc": "The time, at which the processing of the activity was started.",
+          "@sap.label": "Time",
+          "@sap.quickinfo": "Start Time of Activity"
+        },
+        "PlannedEndDate": {
+          "type": "cds.Date",
+          "doc": "The date, on which the processing of the activity was completed.",
+          "@sap.display.format": "Date",
+          "@sap.label": "End Date",
+          "@sap.quickinfo": "Activity End Date"
+        },
+        "PlannedEndTime": {
+          "type": "cds.Time",
+          "doc": "The time, at which the processing of the activity was completed.",
+          "@sap.label": "Time",
+          "@sap.quickinfo": "End Time of Activity"
+        },
+        "IsDeleted": {
+          "type": "cds.Boolean",
+          "doc": "The data record is marked for deletion if the indicator is set.",
+          "@sap.label": "Delete",
+          "@sap.quickinfo": "Delete Data Record",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "to_Item": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotificationItem",
+          "keys": []
+        },
+        "to_Notif": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotification",
+          "keys": []
+        }
+      }
+    },
+    "API_MAINTNOTIFICATION.MaintNotificationItemCause": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.label": "Maintenance Notification Item Cause",
+      "@sap.content.version": "1",
+      "elements": {
+        "MaintenanceNotification": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12,
+          "doc": "Number that identifies the notification.",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Notification",
+          "@sap.quickinfo": "Notification Number",
+          "@sap.updatable": "false"
+        },
+        "MaintenanceNotificationItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Item",
+          "@sap.quickinfo": "Item Number in Item Record",
+          "@sap.updatable": "false"
+        },
+        "MaintenanceNotificationCause": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "NonNegative",
+          "@sap.label": "Cause",
+          "@sap.quickinfo": "Sequential Number for Cause"
+        },
+        "MaintNotifCauseText": {
+          "type": "cds.String",
+          "length": 40,
+          "doc": "Short description of the cause of the problem or malfunction that was determined.",
+          "@sap.label": "Cause Text"
+        },
+        "MaintNotifCauseCodeGroup": {
+          "type": "cds.String",
+          "length": 8,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Cause Code Group"
+        },
+        "MaintNotifCauseCodeGroupName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Group Text",
+          "@sap.quickinfo": "Text for Code Group",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotificationCauseCode": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Cause Code"
+        },
+        "MaintNotificationCauseCodeName": {
+          "type": "cds.String",
+          "length": 40,
+          "@sap.label": "Code Text",
+          "@sap.quickinfo": "Text for Code",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "MaintNotificationRootCause": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Root Cause"
+        },
+        "MaintNotificationRootCauseText": {
+          "type": "cds.String",
+          "length": 60,
+          "doc": "This text appears when fixed values are displayed in the F4 help. It explains the possible input values.\n\nSeeTask-Oriented InstructionsReference Documentation for Semantic Properties of Domains",
+          "@sap.label": "Short Descript.",
+          "@sap.quickinfo": "Short Text for Fixed Values",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "IsDeleted": {
+          "type": "cds.Boolean",
+          "doc": "The data record is marked for deletion if the indicator is set.",
+          "@sap.label": "Delete",
+          "@sap.quickinfo": "Delete Data Record",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false"
+        },
+        "to_Item": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotificationItem",
+          "keys": []
+        },
+        "to_Notif": {
+          "doc": "Please add  an ON condition",
+          "type": "cds.Association",
+          "target": "API_MAINTNOTIFICATION.MaintenanceNotification",
+          "keys": []
+        }
+      }
+    }
+  }
+}

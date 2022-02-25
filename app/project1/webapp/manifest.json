@@ -13,15 +13,6 @@
             "keywords": []
         },
         "dataSources": {
-            "mainService2": {
-                "uri": "/analytics/",
-                "type": "OData",
-                "settings": {
-                    "odataVersion": "4.0",
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml"
-                }
-            },
             "mainService": {
                 "uri": "/v2/analytics/",
                 "type": "OData",
@@ -32,6 +23,13 @@
                         "annotation0"
                     ],
                     "localUri": "localService/metadata.xml"
+                }
+            },
+            "catalogService": {
+                "uri": "/v2/catalog/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
                 }
             },
             "annotation": {
@@ -112,18 +110,15 @@
                 "type": "sap.ui.model.resource.ResourceModel",
                 "uri": "i18n/i18n.properties"
             },
-            "mainService2": {
-                "dataSource": "mainService2",
-                "preload": true,
-                "settings": {
-                    "synchronizationMode": "None",
-                    "operationMode": "Server",
-                    "autoExpandSelect": true,
-                    "earlyRequests": true
-                }
-            },
             "mainService": {
                 "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline"
+                }
+            },
+            "catalogService": {
+                "dataSource": "catalogService",
                 "preload": true,
                 "settings": {
                     "defaultCountMode": "Inline"
@@ -147,35 +142,19 @@
         "globalFilterEntityType": "MaintOrders",
         "containerLayout": "resizable",
         "enableLiveFilter": true,
-        "considerAnalyticalParameters": true,
+        "considerAnalyticalParameters": false,
         "chartSettings": {
             "showDataLabel": true
         },
         "cards": {
-            "card00": {
-                "model": "mainService",
-                "template": "sap.ovp.cards.charts.analytical",
-                "settings": {
-                    "title": "{{card00_title}}",
-                    "subTitle": "{{card00_subtitle}}",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "navigation": "noHeaderNav",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ByOrderType",
-                    "stopResizing": false,
-                    "defaultSpan": {
-                        "rows": 1,
-                        "cols": 1,
-                        "showOnlyHeader": false
-                    }
-                }
-            },
             "card01": {
-                "model": "mainService",
+                "model": "catalogService",
                 "template": "project1.cards.analytics",
                 "settings": {
                     "title": "{{card01_title}}",
-                    "entitySet": "MaintOrdersAnalytics",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ByOrderType",
+                    "entitySet": "WorkOrderAnalytics1",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdersByWorkCenter",
+                    "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#OrdersByWorkCenterPreVar",
                     "defaultSpan": {
                         "rows": 1,
                         "cols": 1,
@@ -183,6 +162,24 @@
                     },
                     "custom": {
                         "height": 465
+                    }
+                }
+            },
+            "card00": {
+                "model": "catalogService",
+                "template": "sap.ovp.cards.charts.analytical",
+                "settings": {
+                    "title": "{{card00_title}}",
+                    "subTitle": "{{card00_subtitle}}",
+                    "entitySet": "WorkOrderAnalytics1",
+                    "navigation": "noHeaderNav",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdersByWorkCenter",
+                    "presentationAnnotationPath" : "com.sap.vocabularies.UI.v1.PresentationVariant#OrdersByWorkCenterPreVar",
+                    "stopResizing": false,
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 1,
+                        "showOnlyHeader": false
                     }
                 }
             }

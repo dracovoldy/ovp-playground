@@ -1,46 +1,66 @@
 {
-  "name": "ovp-playground",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^5",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.5",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "sqlite3": "^5.0.2"
-  },
-  "scripts": {
-    "start": "cds run",
-    "watch": "cds watch --open project1/webapp/test/flpSandbox.html#project1-tile",
-    "app2": "cds watch --open zpm-analytics/webapp/test/flpSandbox.html#dcorechevronzpmanalytics-display"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
+    "name": "ovp-playground",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^5",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.8.5",
+        "express": "^4",
+        "alasql": "^1.7.3"
     },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
+    "devDependencies": {
+        "sqlite3": "^5.0.2"
     },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
+    "scripts": {
+        "start": "cds run",
+        "watch": "cds watch --open project1/webapp/test/flpSandbox.html#project1-tile",
+        "app2": "cds watch --open zpm-analytics/webapp/test/flpSandbox.html#dcorechevronzpmanalytics-display"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "cds": {
+        "requires": {
+            "EAM_OBJPG_MAINTENANCEORDER_SRV": {
+                "kind": "odata-v2",
+                "model": "srv/external/EAM_OBJPG_MAINTENANCEORDER_SRV",
+                "credentials": {
+                    "destination": "API_S4_HTTP_PP",
+                    "path": "/sap/opu/odata/sap/EAM_OBJPG_MAINTENANCEORDER_SRV"
+                }
+            },
+            "API_MAINTNOTIFICATION": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_MAINTNOTIFICATION",
+                "credentials": {
+                    "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_MAINTNOTIFICATION/"
+                }
+            }
+        }
     }
-  }
 }

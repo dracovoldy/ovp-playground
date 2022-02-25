@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+  <edmx:Include Namespace="Org.OData.Capabilities.V1"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+ </edmx:Reference>
+ <edmx:DataServices m:DataServiceVersion="2.0">
+  <Schema Namespace="cds_api_maintnotification" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+   <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+   <EntityType Name="MaintenanceNotificationType" sap:label="Maintenance Notification" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceNotification"/>
+    </Key>
+    <Property Name="MaintenanceNotification" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Notification" sap:quickinfo="Notification Number" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number that identifies the notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifInternalID" Type="Edm.String" MaxLength="22" sap:display-format="UpperCase" sap:label="Object number" sap:quickinfo="Object Number for Status Management" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number under which the maintenance notification is stored in the status management</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationText" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:quickinfo="Short Text">
+     <Documentation>
+      <Summary>Short description of the contents of a notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPriority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:text="MaintPriorityDesc" sap:label="Priority">
+     <Documentation>
+      <Summary>The key in this field indicates the importance of the processing of the order/notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Notification Type" sap:updatable="false">
+     <Documentation>
+      <Summary>Key that enables notifications to be differentiated and grouped according to notification category, notification origin, and other criteria.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotifProcessingPhase" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Notification Phase" sap:quickinfo="Notification Processing Phase" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="NotifProcessingPhaseDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>This text appears when fixed values are displayed in the F4 help. It explains the possible input values.</Summary>
+      <LongDescription>SeeTask-Oriented InstructionsReference Documentation for Semantic Properties of Domains</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPriorityDesc" Type="Edm.String" MaxLength="20" sap:label="Priority Text" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On" sap:quickinfo="Date on Which Record Was Created" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeTime" Type="Edm.Time" Precision="0" sap:label="Time of Change" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Time at which the current record was last changed.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="0" sap:label="Short Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The UTC time stamp is the date and time relative to UTC (Universal Coordinated Time).</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CreationTime" Type="Edm.Time" Precision="0" sap:label="Created At" sap:quickinfo="Time at Which Record Was Added" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="ReportedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="ReporterFullName" sap:label="Reported By" sap:quickinfo="Name of Person Reporting Notification">
+     <Documentation>
+      <Summary>Name of the person who reported the notification</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ReporterFullName" Type="Edm.String" MaxLength="80" sap:label="Full Name" sap:quickinfo="Full Name of Person" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>This field contains the complete personal name. It is usually generated from the various name components (without title).</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PersonResponsible" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="PersonResponsibleName" sap:label="Person Resp. ID" sap:quickinfo="Person Responsible ID">
+     <Documentation>
+      <Summary>Specifies the internal identification number of the person who is responsible for processing the job.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MalfunctionEffect" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Effect" sap:quickinfo="Effect on Operation">
+     <Documentation>
+      <Summary>Effect of the problem or malfunction on the operation of the affected system</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MalfunctionEffectText" Type="Edm.String" MaxLength="40" sap:label="Effect" sap:quickinfo="Text - Effect on Operation" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Text for key which describes the effect of the problem or malfunction on the operation of the system</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MalfunctionStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Malfunction Start" sap:quickinfo="Start of Malfunction (Date)">
+     <Documentation>
+      <Summary>Date of day on which the malfunction started, or on which the problem occurred.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MalfunctionStartTime" Type="Edm.Time" Precision="0" sap:label="Mal. Start (T.)" sap:quickinfo="Start of Malfunction (Time)">
+     <Documentation>
+      <Summary>Time at which the malfunction started or at which the problem occurred</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MalfunctionEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Malfunction End" sap:quickinfo="End of Malfunction (Date)">
+     <Documentation>
+      <Summary>Date of day on which the problem was solved, or on which the malfunction ended.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MalfunctionEndTime" Type="Edm.Time" Precision="0" sap:label="Malfunction End" sap:quickinfo="End of Malfunction (Time)">
+     <Documentation>
+      <Summary>Time at which the malfunction ended, or at which the problem was solved</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotificationCatalog" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Catalog Coding" sap:quickinfo="Catalog Type - Coding" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key for the catalog type that defines the coding.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotificationCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Coding Code" sap:quickinfo="Coding">
+     <Documentation>
+      <Summary>Key from the assigned catalog that is used to code the notification.</Summary>
+      <LongDescription>For example, you can use the coding to classify the notification according to the problem type.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotificationCodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Code Group" sap:quickinfo="Code Group - Coding">
+     <Documentation>
+      <Summary>Key for the code group that contains the codes for coding the notification.</Summary>
+      <LongDescription>For example, you can use the coding for general classification of the notification.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CatalogProfile" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Catalog Profile" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key of the catalog profile that is intended as the basis for the notification.</Summary>
+      <LongDescription>In Plant Maintenance and Customer Service, the catalog profile is proposed in the notification if:A notification is created without a reference object orThe reference object entered (equipment or functional location) does not contain a catalog profile</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationCreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Notification Date" sap:quickinfo="Date of Notification">
+     <Documentation>
+      <Summary>Date at which the notification was created.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationCreationTime" Type="Edm.Time" Precision="0" sap:label="Notification Time" sap:quickinfo="Time of Notification">
+     <Documentation>
+      <Summary>Time at which the notification was created.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationTimeZone" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Notif. Time Zone" sap:quickinfo="Time Zone for Notification" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="RequiredStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Required Start Date"/>
+    <Property Name="RequiredStartTime" Type="Edm.Time" Precision="0" sap:label="Req. start time" sap:quickinfo="Required Start Time">
+     <Documentation>
+      <Summary>Time at which the processing of the notification is to start</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="RequiredEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Required End Date"/>
+    <Property Name="RequiredEndTime" Type="Edm.Time" Precision="0" sap:label="Req. end time" sap:quickinfo="Required End Time">
+     <Documentation>
+      <Summary>Time by which the processing of the notification is to be completed</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="LatestAcceptableCompletionDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Final Due Date"/>
+    <Property Name="MaintenanceObjectIsDown" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Breakdown" sap:quickinfo="Breakdown Indicator">
+     <Documentation>
+      <Summary>Indicator that informs you when a machine has broken down</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotificationLongText" Type="Edm.String" sap:label="Long Text" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotifLongTextForEdit" Type="Edm.String" MaxLength="1333" sap:label="Long Text"/>
+    <Property Name="TechnicalObject" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object"/>
+    <Property Name="TechObjIsEquipOrFuncnlLoc" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Tech. Obj. Type" sap:quickinfo="Technical Object Type"/>
+    <Property Name="TechnicalObjectLabel" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object" sap:quickinfo="Technical Object Identifier" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenancePlanningPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="PlantName" sap:label="Planning Plant" sap:quickinfo="Maintenance Planning Plant">
+     <Documentation>
+      <Summary>Key that identifies the maintenance planning plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlannerGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="MaintenancePlannerGroupName" sap:label="Maint. Planner Group" sap:quickinfo="Planner Group for Customer Service and Plant Maintenance">
+     <Documentation>
+      <Summary>Key that uniquely identifies the planner group in Customer Service or Plant Maintenance.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PlantSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="PlantSectionPersonRespName" sap:label="Plant Section">
+     <Documentation>
+      <Summary>Number which clearly identifies a plant section.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ABCIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:text="ABCIndicatorDesc" sap:label="ABC Indicator" sap:quickinfo="ABC Indicator for Technical Object" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>An indicator that is assigned by the procedure of ABC analysis.</Summary>
+      <LongDescription>The following ABC indicators are possible:A - ImportantB - Less importantC - Relatively unimportantAccording to these criteria, "A" materials are those materials that are of greatest importance for the production operations of a company.Examples of use for ABC indicators are vendor master records, material  master records, and master records of technical objects.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="SuperiorTechnicalObject" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="SuperiorTechnicalObjectName" Type="Edm.String" MaxLength="40" sap:label="Tech. Obj. Desc" sap:quickinfo="Technical Object Description" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Describes the technical object, which can be either a piece of equipment or a functional location.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SuperiorObjIsEquipOrFuncnlLoc" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Tech. Obj. Type" sap:quickinfo="Technical Object Type" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="SuperiorTechnicalObjectLabel" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Technical Object" sap:quickinfo="Technical Object Identifier" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="ManufacturerPartTypeName" Type="Edm.String" MaxLength="20" sap:label="Model number" sap:quickinfo="Manufacturer model number" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="TechObjIsEquipOrFuncnlLocDesc" Type="Edm.String" MaxLength="40" sap:label="TObj.Type Desc." sap:quickinfo="Description of Technical Object Type" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="FunctionalLocation" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Object ID" sap:quickinfo="Object ID of Functional Location or Equipment" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="FunctionalLocationLabelName" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Functional Location" sap:quickinfo="Functional Location Label" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The label is used to identify a functional location from a user's point of view.</Summary>
+      <LongDescription>The functional location label can be changed where necessary. The system then automatically creates a labeling history and prevents historical labels from being reused without this first being checked. The labeling history also enables the interpretation of historical location labels in non-changeable documents outside the SAP System.You can assign one primary and several alternative labels to a functional location.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="TechnicalObjectDescription" Type="Edm.String" MaxLength="40" sap:label="Tech. Obj. Desc" sap:quickinfo="Technical Object Description" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Describes the technical object, which can be either a piece of equipment or a functional location.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="AssetLocation" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="LocationName" sap:label="Location" sap:quickinfo="Location of maintenance object">
+     <Documentation>
+      <Summary>The key in this field indicates a location within a plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="LocationName" Type="Edm.String" MaxLength="40" sap:label="Location Name" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="BusinessArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Business Area" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key that uniquely identifies a business area.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The company code is an organizational unit within financial accounting.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="TechnicalObjectCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Tech. Obj. Category" sap:quickinfo="Technical Object Category" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="TechnicalObjectType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Object Type" sap:quickinfo="Type of Technical Object" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key that describes the type of technical object.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MainWorkCenterPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="MainWorkCenterPlantName" sap:label="Plant">
+     <Documentation>
+      <Summary>Key uniquely identifying a plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MainWorkCenter" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:text="MainWorkCenterText" sap:label="Work Center"/>
+    <Property Name="PlantName" Type="Edm.String" MaxLength="30" sap:label="Plant Name" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenancePlannerGroupName" Type="Edm.String" MaxLength="18" sap:label="Planner Group Name" sap:quickinfo="Name of the Maintenance Planner Group" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="MaintenancePlantName" sap:label="Maintenance Plant">
+     <Documentation>
+      <Summary>Number which clearly identifies a maintenance plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="LocationDescription" Type="Edm.String" MaxLength="50" sap:label="Current Location" sap:quickinfo="Description of Current Location"/>
+    <Property Name="MainWorkCenterText" Type="Edm.String" MaxLength="40" sap:label="Work Center Text" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MainWorkCenterPlantName" Type="Edm.String" MaxLength="30" sap:label="Plant Name" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenancePlantName" Type="Edm.String" MaxLength="30" sap:label="Plant Name" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="PlantSectionPersonRespName" Type="Edm.String" MaxLength="14" sap:label="EmplGrp Responsible" sap:quickinfo="Group of Employees Responsible for Company Area" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Group of employees that is responsible for production in this company area. This group of employees serves as a contact for the workers in Maintenance Planning and Processing.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ABCIndicatorDesc" Type="Edm.String" MaxLength="20" sap:label="ABC Ind. Descr." sap:quickinfo="Description of ABC Indicator of Technical Object" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Describes the ABC indicator of the technical object.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PersonResponsibleName" Type="Edm.String" MaxLength="35" sap:label="Person Responsible" sap:quickinfo="Person Responsible Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false">
+     <Documentation>
+      <Summary>Specifies the name of the person who is responsible for processing the job.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceOrder" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Order" sap:quickinfo="Order Number">
+     <Documentation>
+      <Summary>Key that uniquely identifies an order within a client.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Order Type" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key that differentiates orders according to their purpose.</Summary>
+      <LongDescription>The order type contains a range of parameters which affect the way the order is processed.For example, using the order type, you can specifyThe number ranges to be used for the ordersWhich criteria are used when selecting a routingHow the order is to be costed.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ConcatenatedActiveSystStsName" Type="Edm.String" MaxLength="224" sap:label="Concatenated System Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+    <Property Name="MaintenanceActivityType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Activity Type" sap:quickinfo="Maintenance Activity Type"/>
+    <Property Name="MaintObjDowntimeDurationUnit" Type="Edm.String" MaxLength="3" sap:label="Breakdown durtn unit" sap:quickinfo="Unit for Breakdown Duration" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Unit of time entered to record the length of machine downtime</Summary>
+      <LongDescription>If you prefer to make the entry using a different unit of time, you must overwrite the unit of time displayed with the new unit and press ENTER. The system then converts the downtime.Length of downtime: 30Einheit:            Minutes</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintObjectDowntimeDuration" Type="Edm.Double" sap:label="Breakdown Duration">
+     <Documentation>
+      <Summary>Time entered to record the length of machine downtime</Summary>
+      <LongDescription>If you have entered from when to when the machine breakdown occurred, the system automatically calculates the entry in this field.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlan" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceItem" Type="Edm.String" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="TaskListGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Group" sap:quickinfo="Key for Task List Group" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key identifying a group.</Summary>
+      <LongDescription>You can use groups, for example, to identify two routings that have different production steps for one material.Enter the group to which you want to restrict the selection.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="TaskListGroupCounter" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Group Counter" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>This key and the task list group uniquely identify a task list.</Summary>
+      <LongDescription>In Production Planning and Control, for example, it serves to identify alternative production processes in task lists and is used to make a distinction between similar task lists.The group counter can be used to identify different lot-size ranges, for example.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCallNumber" Type="Edm.Int32" sap:label="MntPlan Call No." sap:quickinfo="Maintenance Plan Call Number" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Continual numbers of the maintenance call.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceTaskListType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Task List Type" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key which classifies task lists according to their functionality.</Summary>
+      <LongDescription>Routings are defined under the following task list types:RoutingsReference operation setsMaster recipeGeneral maintenance task listEquipment task listInspection planTask list for funct. location</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationReferenceDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Reference Date" sap:quickinfo="Notification Reference Date">
+     <Documentation>
+      <Summary>Date at which the equipment location and account assignment data are read and stored in the maintenance history upon completion of the PM notification. The PM notifications are sorted in the history according to this date and the reference time, which together form the reference time.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationReferenceTime" Type="Edm.Time" Precision="0" sap:label="Reference Time" sap:quickinfo="Notification Reference Time">
+     <Documentation>
+      <Summary>Time that, together with the reference date forms the reference time, the system uses to create closed notifications and orders for PM and customer service.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationCompletionDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Completion by Date" sap:quickinfo="Date for Notification Completion" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Date at which the notification was or is to be completed</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CompletionTime" Type="Edm.Time" Precision="0" sap:label="Completion Time" sap:quickinfo="Completion Time of Notification" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Time at which the notification is or was completed.</Summary>
+      <LongDescription>This time is proposed on the basis of the reference time.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="AssetRoom" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Room">
+     <Documentation>
+      <Summary>In this field you can designate a specific room for the asset.</Summary>
+      <LongDescription>The field is used for informational purposes, and can be used as a sort criterion in reports (for example, the inventory list).</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifExtReferenceNumber" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Reference number" sap:quickinfo="External Reference Number">
+     <Documentation>
+      <Summary>You can assign a notification an external reference number that is not checked by the system.</Summary>
+      <LongDescription>In quality notifications, the reference number contains the complaint number of the customer who is filing the complaint.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifRejectionReasonCode" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Reason Code" sap:quickinfo="Maintenance Reason Code" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Indicates a unique code that identifies the reason for rejection of a maintenance request or for sending the maintenance request to the initiator for receiving additional information.</Summary>
+      <LongDescription>During the screening phase, the maintenance request is reviewed to ensure that all required details are available in the maintenance request for successful and quick resolution of the request.If information in the maintenance request is incomplete, you can send it back to the initiator.Using reason codes, you can communicate why a maintenance request was rejected or sent back for receiving additional information.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifRejectionRsnCodeTxt" Type="Edm.String" MaxLength="40" sap:label="Reason Code Desc" sap:quickinfo="Maintenance Reason Code Description" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Describes a reason code.</Summary>
+      <LongDescription>You can enter a description for a reason code.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifDetectionCatalog" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Detection Meth Prfl" sap:quickinfo="Detection Method Profile" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Indicates a profile to which one or more detection method groups can be added.</Summary>
+      <LongDescription>You can add one or more detection method groups to a detection method profile. Detection method profiles can be assigned to notifications.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifDetectionCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="MaintNotifDetectionCodeText" sap:label="Detection Method">
+     <Documentation>
+      <Summary>Indicates an activity that is used to discover a failure.</Summary>
+      <LongDescription>Detection method is an activity using which a failure is discovered. It helps in analyzing the effect of maintenance. It also helps in determining the differences between failures that are detected during regular maintenance and failures that are casual occurrences.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifDetectionCodeText" Type="Edm.String" MaxLength="40" sap:label="Detection Meth Desc" sap:quickinfo="Detection Method Description" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotifDetectionCodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:text="MaintNotifDetectionCodeGrpTxt" sap:label="Detection Meth Grp" sap:quickinfo="Detection Method Group">
+     <Documentation>
+      <Summary>Indicates a category to which detection methods belong.</Summary>
+      <LongDescription>Each detection method belongs to a detection method group. Detection methods are grouped depending on when the failure was discovered.The predefined detection method groups are as follows:Scheduled activitiesContinuous monitoringCasual occurrencesOther</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifDetectionCodeGrpTxt" Type="Edm.String" MaxLength="40" sap:label="Dtctn Meth Grp Desc" sap:quickinfo="Detection Method Group Description" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotifProcessPhaseCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:text="EAMProcessPhaseCodeDesc" sap:label="Process Phase" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>A distinct stage in the end-to-end process of a maintenance work. These are fixed values that are used mainly for reporting and analytics. A phase is automatically determined for a notification, order, and operation when the system status is changed.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifProcessSubPhaseCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="EAMProcessSubPhaseCodeDesc" sap:label="Process Subphase" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>A distinct stage within a phase that reflects the state of a maintenance work. A subphase is automatically determined for a notification, order, and operation when the system status is changed.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="EAMProcessPhaseCodeDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>This text appears when fixed values are displayed in the F4 help. It explains the possible input values.</Summary>
+      <LongDescription>SeeTask-Oriented InstructionsReference Documentation for Semantic Properties of Domains</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="EAMProcessSubPhaseCodeDesc" Type="Edm.String" MaxLength="40" sap:label="Subphase Description" sap:quickinfo="Description of Overall Process Subphase" sap:creatable="false" sap:updatable="false"/>
+    <NavigationProperty Name="to_Item" Relationship="cds_api_maintnotification.assoc_D92E914ED76EC7F3D6CE873F32CB6DF4" FromRole="FromRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4" ToRole="ToRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4"/>
+    <NavigationProperty Name="to_Partner" Relationship="cds_api_maintnotification.assoc_843A6777C18DD22FE63F484E5D21310D" FromRole="FromRole_assoc_843A6777C18DD22FE63F484E5D21310D" ToRole="ToRole_assoc_843A6777C18DD22FE63F484E5D21310D"/>
+   </EntityType>
+   <EntityType Name="MaintenanceNotificationItemType" sap:label="Maintenance Notification Item" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceNotification"/>
+     <PropertyRef Name="MaintenanceNotificationItem"/>
+    </Key>
+    <Property Name="MaintenanceNotification" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Notification" sap:quickinfo="Notification Number" sap:updatable="false">
+     <Documentation>
+      <Summary>Number that identifies the notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceNotificationItem" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item Number in Item Record"/>
+    <Property Name="MaintNotifItemText" Type="Edm.String" MaxLength="40" sap:label="Item Text" sap:quickinfo="Notification Item Short Text">
+     <Documentation>
+      <Summary>Short description of the notification item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifDamageCodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Damage Code Group"/>
+    <Property Name="MaintNotifDamageCodeGroupName" Type="Edm.String" MaxLength="40" sap:label="Code Group Text" sap:quickinfo="Text for Code Group" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotificationDamageCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Damage Code"/>
+    <Property Name="MaintNotifDamageCodeName" Type="Edm.String" MaxLength="40" sap:label="Code Text" sap:quickinfo="Text for Code" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotifObjPrtCodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Obj. Part Code Group" sap:quickinfo="Object Part Code Group"/>
+    <Property Name="MaintNotifObjPrtCodeGroupName" Type="Edm.String" MaxLength="40" sap:label="Code Group Text" sap:quickinfo="Text for Code Group" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotifObjPrtCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Object Part Code"/>
+    <Property Name="MaintNotifObjPrtCodeName" Type="Edm.String" MaxLength="40" sap:label="Code Text" sap:quickinfo="Text for Code" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="IsDeleted" Type="Edm.Boolean" sap:label="Delete" sap:quickinfo="Delete Data Record" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The data record is marked for deletion if the indicator is set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_ItemActivity" Relationship="cds_api_maintnotification.assoc_B7F7B3A263846E51D321C9BEA83B6DBF" FromRole="FromRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF" ToRole="ToRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF"/>
+    <NavigationProperty Name="to_ItemCause" Relationship="cds_api_maintnotification.assoc_0270053C368F63967705968E406BCAF5" FromRole="FromRole_assoc_0270053C368F63967705968E406BCAF5" ToRole="ToRole_assoc_0270053C368F63967705968E406BCAF5"/>
+    <NavigationProperty Name="to_Notif" Relationship="cds_api_maintnotification.assoc_CAAB1CB9E9F4F83BA0F687A403122541" FromRole="FromRole_assoc_CAAB1CB9E9F4F83BA0F687A403122541" ToRole="ToRole_assoc_CAAB1CB9E9F4F83BA0F687A403122541"/>
+   </EntityType>
+   <EntityType Name="MaintenanceNotificationPartnerType" sap:label="Maintenance Notification Partner" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceNotification"/>
+     <PropertyRef Name="PartnerFunction"/>
+     <PropertyRef Name="NotificationPartnerObjectNmbr"/>
+    </Key>
+    <Property Name="MaintenanceNotification" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Notification" sap:quickinfo="Notification Number" sap:updatable="false">
+     <Documentation>
+      <Summary>Number that identifies the notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PartnerFunction" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Partner Function">
+     <Documentation>
+      <Summary>You can convert the keys that identify the partner functions in the original German system to language-specific keys. The converted keys then appear according to the language in which the user logs on.</Summary>
+      <LongDescription>Enter the original German key of the partner function for which you want to provide a language-specific key.The customer who orders goods, the sold-to party, is called the "Auftraggeber" in the German system. The original German key is "AG". You could, for example, convert this to an English key: "SP".</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationPartnerObjectNmbr" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Counter" sap:quickinfo="Counter for differentiation 6-digit"/>
+    <Property Name="Partner" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Partner">
+     <Documentation>
+      <Summary>12-figure number, that identifies explicitly the partner.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_Notif" Relationship="cds_api_maintnotification.assoc_DD250E60760B3691E8F218B26DB59AD5" FromRole="FromRole_assoc_DD250E60760B3691E8F218B26DB59AD5" ToRole="ToRole_assoc_DD250E60760B3691E8F218B26DB59AD5"/>
+   </EntityType>
+   <EntityType Name="MaintNotificationItemActivityType" sap:label="Maintenance Notification Item Activity" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintNotificationActivity"/>
+     <PropertyRef Name="MaintenanceNotification"/>
+     <PropertyRef Name="MaintenanceNotificationItem"/>
+    </Key>
+    <Property Name="MaintNotificationActivity" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Activity" sap:quickinfo="Consecutive Number of Activity">
+     <Documentation>
+      <Summary>You can record actions which refer to both the notification header and an item.</Summary>
+      <LongDescription>The actions are numbered consecutively, i.e. all actions  for the entire notification.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceNotification" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Notification" sap:quickinfo="Notification Number" sap:updatable="false">
+     <Documentation>
+      <Summary>Number that identifies the notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceNotificationItem" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item Number in Item Record" sap:updatable="false"/>
+    <Property Name="MaintNotifActivitySortNumber" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Activity Sort Number" sap:quickinfo="Sort Number for Activity">
+     <Documentation>
+      <Summary>You can assign any desired activity numbers. The system automatically proposes the highest previously assigned number + 1 as the sort number.</Summary>
+      <LongDescription>If you enter numbers manually, you can enter the same number for several items, since the system does not check whether these numbers already exist.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifActyTxt" Type="Edm.String" MaxLength="40" sap:label="Activity Text">
+     <Documentation>
+      <Summary>Short description of the activity carried out to repair the malfunction or to fulfill the maintenance request</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifActivityCodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Activity Code Group"/>
+    <Property Name="NotifActivityCodeGroupText" Type="Edm.String" MaxLength="40" sap:label="Code Group Text" sap:quickinfo="Text for Code Group" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotificationActivityCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Activity Code"/>
+    <Property Name="NotifActivityCodeText" Type="Edm.String" MaxLength="40" sap:label="Code Text" sap:quickinfo="Text for Code" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="PlannedStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Start Date" sap:quickinfo="Activity Start Date">
+     <Documentation>
+      <Summary>Deadline, at which the actvity is to be started.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PlannedStartTime" Type="Edm.Time" Precision="0" sap:label="Time" sap:quickinfo="Start Time of Activity">
+     <Documentation>
+      <Summary>The time, at which the processing of the activity was started.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PlannedEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="End Date" sap:quickinfo="Activity End Date">
+     <Documentation>
+      <Summary>The date, on which the processing of the activity was completed.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="PlannedEndTime" Type="Edm.Time" Precision="0" sap:label="Time" sap:quickinfo="End Time of Activity">
+     <Documentation>
+      <Summary>The time, at which the processing of the activity was completed.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="IsDeleted" Type="Edm.Boolean" sap:label="Delete" sap:quickinfo="Delete Data Record" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The data record is marked for deletion if the indicator is set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_Item" Relationship="cds_api_maintnotification.assoc_637B6A852363F40A1991E5F229F70CA2" FromRole="FromRole_assoc_637B6A852363F40A1991E5F229F70CA2" ToRole="ToRole_assoc_637B6A852363F40A1991E5F229F70CA2"/>
+    <NavigationProperty Name="to_Notif" Relationship="cds_api_maintnotification.assoc_4205E579CE746DC8068A482661AB1E98" FromRole="FromRole_assoc_4205E579CE746DC8068A482661AB1E98" ToRole="ToRole_assoc_4205E579CE746DC8068A482661AB1E98"/>
+   </EntityType>
+   <EntityType Name="MaintNotificationItemCauseType" sap:label="Maintenance Notification Item Cause" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceNotification"/>
+     <PropertyRef Name="MaintenanceNotificationItem"/>
+     <PropertyRef Name="MaintenanceNotificationCause"/>
+    </Key>
+    <Property Name="MaintenanceNotification" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Notification" sap:quickinfo="Notification Number" sap:updatable="false">
+     <Documentation>
+      <Summary>Number that identifies the notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceNotificationItem" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item Number in Item Record" sap:updatable="false"/>
+    <Property Name="MaintenanceNotificationCause" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Cause" sap:quickinfo="Sequential Number for Cause"/>
+    <Property Name="MaintNotifCauseText" Type="Edm.String" MaxLength="40" sap:label="Cause Text">
+     <Documentation>
+      <Summary>Short description of the cause of the problem or malfunction that was determined.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifCauseCodeGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Cause Code Group"/>
+    <Property Name="MaintNotifCauseCodeGroupName" Type="Edm.String" MaxLength="40" sap:label="Code Group Text" sap:quickinfo="Text for Code Group" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotificationCauseCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Cause Code"/>
+    <Property Name="MaintNotificationCauseCodeName" Type="Edm.String" MaxLength="40" sap:label="Code Text" sap:quickinfo="Text for Code" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintNotificationRootCause" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Root Cause"/>
+    <Property Name="MaintNotificationRootCauseText" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>This text appears when fixed values are displayed in the F4 help. It explains the possible input values.</Summary>
+      <LongDescription>SeeTask-Oriented InstructionsReference Documentation for Semantic Properties of Domains</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="IsDeleted" Type="Edm.Boolean" sap:label="Delete" sap:quickinfo="Delete Data Record" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The data record is marked for deletion if the indicator is set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_Item" Relationship="cds_api_maintnotification.assoc_E64C1A7E4C7EB8737166B8ECAFC64950" FromRole="FromRole_assoc_E64C1A7E4C7EB8737166B8ECAFC64950" ToRole="ToRole_assoc_E64C1A7E4C7EB8737166B8ECAFC64950"/>
+    <NavigationProperty Name="to_Notif" Relationship="cds_api_maintnotification.assoc_6D187B1A1DA81B705D5ED6E738D90CB5" FromRole="FromRole_assoc_6D187B1A1DA81B705D5ED6E738D90CB5" ToRole="ToRole_assoc_6D187B1A1DA81B705D5ED6E738D90CB5"/>
+   </EntityType>
+   <Association Name="assoc_B7F7B3A263846E51D321C9BEA83B6DBF" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintenanceNotificationItemType" Multiplicity="1" Role="FromRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintnotification.MaintNotificationItemActivityType" Multiplicity="*" Role="ToRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF">
+      <PropertyRef Name="MaintenanceNotificationItem"/>
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF">
+      <PropertyRef Name="MaintenanceNotificationItem"/>
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_0270053C368F63967705968E406BCAF5" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintenanceNotificationItemType" Multiplicity="1" Role="FromRole_assoc_0270053C368F63967705968E406BCAF5">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintnotification.MaintNotificationItemCauseType" Multiplicity="*" Role="ToRole_assoc_0270053C368F63967705968E406BCAF5"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_0270053C368F63967705968E406BCAF5">
+      <PropertyRef Name="MaintenanceNotificationItem"/>
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_0270053C368F63967705968E406BCAF5">
+      <PropertyRef Name="MaintenanceNotificationItem"/>
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_CAAB1CB9E9F4F83BA0F687A403122541" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintenanceNotificationItemType" Multiplicity="1" Role="FromRole_assoc_CAAB1CB9E9F4F83BA0F687A403122541"/>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationType" Multiplicity="1" Role="ToRole_assoc_CAAB1CB9E9F4F83BA0F687A403122541"/>
+   </Association>
+   <Association Name="assoc_E64C1A7E4C7EB8737166B8ECAFC64950" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintNotificationItemCauseType" Multiplicity="1" Role="FromRole_assoc_E64C1A7E4C7EB8737166B8ECAFC64950"/>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationItemType" Multiplicity="1" Role="ToRole_assoc_E64C1A7E4C7EB8737166B8ECAFC64950"/>
+   </Association>
+   <Association Name="assoc_6D187B1A1DA81B705D5ED6E738D90CB5" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintNotificationItemCauseType" Multiplicity="1" Role="FromRole_assoc_6D187B1A1DA81B705D5ED6E738D90CB5"/>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationType" Multiplicity="1" Role="ToRole_assoc_6D187B1A1DA81B705D5ED6E738D90CB5"/>
+   </Association>
+   <Association Name="assoc_DD250E60760B3691E8F218B26DB59AD5" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintenanceNotificationPartnerType" Multiplicity="1" Role="FromRole_assoc_DD250E60760B3691E8F218B26DB59AD5"/>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationType" Multiplicity="1" Role="ToRole_assoc_DD250E60760B3691E8F218B26DB59AD5"/>
+   </Association>
+   <Association Name="assoc_843A6777C18DD22FE63F484E5D21310D" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintenanceNotificationType" Multiplicity="1" Role="FromRole_assoc_843A6777C18DD22FE63F484E5D21310D">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationPartnerType" Multiplicity="*" Role="ToRole_assoc_843A6777C18DD22FE63F484E5D21310D"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_843A6777C18DD22FE63F484E5D21310D">
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_843A6777C18DD22FE63F484E5D21310D">
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_D92E914ED76EC7F3D6CE873F32CB6DF4" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintenanceNotificationType" Multiplicity="1" Role="FromRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationItemType" Multiplicity="*" Role="ToRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4">
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4">
+      <PropertyRef Name="MaintenanceNotification"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_637B6A852363F40A1991E5F229F70CA2" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintNotificationItemActivityType" Multiplicity="1" Role="FromRole_assoc_637B6A852363F40A1991E5F229F70CA2"/>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationItemType" Multiplicity="1" Role="ToRole_assoc_637B6A852363F40A1991E5F229F70CA2"/>
+   </Association>
+   <Association Name="assoc_4205E579CE746DC8068A482661AB1E98" sap:content-version="1">
+    <End Type="cds_api_maintnotification.MaintNotificationItemActivityType" Multiplicity="1" Role="FromRole_assoc_4205E579CE746DC8068A482661AB1E98"/>
+    <End Type="cds_api_maintnotification.MaintenanceNotificationType" Multiplicity="1" Role="ToRole_assoc_4205E579CE746DC8068A482661AB1E98"/>
+   </Association>
+   <EntityContainer Name="cds_api_maintnotification_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+    <EntitySet Name="MaintenanceNotification" EntityType="cds_api_maintnotification.MaintenanceNotificationType" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceNotificationItem" EntityType="cds_api_maintnotification.MaintenanceNotificationItemType" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceNotificationPartner" EntityType="cds_api_maintnotification.MaintenanceNotificationPartnerType" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintNotificationItemActivity" EntityType="cds_api_maintnotification.MaintNotificationItemActivityType" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintNotificationItemCause" EntityType="cds_api_maintnotification.MaintNotificationItemCauseType" sap:deletable="false" sap:content-version="1"/>
+    <AssociationSet Name="assoc_843A6777C18DD22FE63F484E5D21310D" Association="cds_api_maintnotification.assoc_843A6777C18DD22FE63F484E5D21310D" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceNotification" Role="FromRole_assoc_843A6777C18DD22FE63F484E5D21310D"/>
+     <End EntitySet="MaintenanceNotificationPartner" Role="ToRole_assoc_843A6777C18DD22FE63F484E5D21310D"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_CAAB1CB9E9F4F83BA0F687A403122541" Association="cds_api_maintnotification.assoc_CAAB1CB9E9F4F83BA0F687A403122541" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceNotificationItem" Role="FromRole_assoc_CAAB1CB9E9F4F83BA0F687A403122541"/>
+     <End EntitySet="MaintenanceNotification" Role="ToRole_assoc_CAAB1CB9E9F4F83BA0F687A403122541"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_B7F7B3A263846E51D321C9BEA83B6DBF" Association="cds_api_maintnotification.assoc_B7F7B3A263846E51D321C9BEA83B6DBF" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceNotificationItem" Role="FromRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF"/>
+     <End EntitySet="MaintNotificationItemActivity" Role="ToRole_assoc_B7F7B3A263846E51D321C9BEA83B6DBF"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_4205E579CE746DC8068A482661AB1E98" Association="cds_api_maintnotification.assoc_4205E579CE746DC8068A482661AB1E98" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintNotificationItemActivity" Role="FromRole_assoc_4205E579CE746DC8068A482661AB1E98"/>
+     <End EntitySet="MaintenanceNotification" Role="ToRole_assoc_4205E579CE746DC8068A482661AB1E98"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_0270053C368F63967705968E406BCAF5" Association="cds_api_maintnotification.assoc_0270053C368F63967705968E406BCAF5" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceNotificationItem" Role="FromRole_assoc_0270053C368F63967705968E406BCAF5"/>
+     <End EntitySet="MaintNotificationItemCause" Role="ToRole_assoc_0270053C368F63967705968E406BCAF5"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_DD250E60760B3691E8F218B26DB59AD5" Association="cds_api_maintnotification.assoc_DD250E60760B3691E8F218B26DB59AD5" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceNotificationPartner" Role="FromRole_assoc_DD250E60760B3691E8F218B26DB59AD5"/>
+     <End EntitySet="MaintenanceNotification" Role="ToRole_assoc_DD250E60760B3691E8F218B26DB59AD5"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_E64C1A7E4C7EB8737166B8ECAFC64950" Association="cds_api_maintnotification.assoc_E64C1A7E4C7EB8737166B8ECAFC64950" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintNotificationItemCause" Role="FromRole_assoc_E64C1A7E4C7EB8737166B8ECAFC64950"/>
+     <End EntitySet="MaintenanceNotificationItem" Role="ToRole_assoc_E64C1A7E4C7EB8737166B8ECAFC64950"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_637B6A852363F40A1991E5F229F70CA2" Association="cds_api_maintnotification.assoc_637B6A852363F40A1991E5F229F70CA2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintNotificationItemActivity" Role="FromRole_assoc_637B6A852363F40A1991E5F229F70CA2"/>
+     <End EntitySet="MaintenanceNotificationItem" Role="ToRole_assoc_637B6A852363F40A1991E5F229F70CA2"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_D92E914ED76EC7F3D6CE873F32CB6DF4" Association="cds_api_maintnotification.assoc_D92E914ED76EC7F3D6CE873F32CB6DF4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceNotification" Role="FromRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4"/>
+     <End EntitySet="MaintenanceNotificationItem" Role="ToRole_assoc_D92E914ED76EC7F3D6CE873F32CB6DF4"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_6D187B1A1DA81B705D5ED6E738D90CB5" Association="cds_api_maintnotification.assoc_6D187B1A1DA81B705D5ED6E738D90CB5" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintNotificationItemCause" Role="FromRole_assoc_6D187B1A1DA81B705D5ED6E738D90CB5"/>
+     <End EntitySet="MaintenanceNotification" Role="ToRole_assoc_6D187B1A1DA81B705D5ED6E738D90CB5"/>
+    </AssociationSet>
+    <FunctionImport Name="CompleteMaintNotification" ReturnType="cds_api_maintnotification.MaintenanceNotificationType" EntitySet="MaintenanceNotification" m:HttpMethod="POST" sap:action-for="cds_api_maintnotification.MaintenanceNotificationType">
+     <Parameter Name="MaintenanceNotification" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Notification">
+      <Documentation>
+       <Summary>Notification</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="NotificationReferenceDate" Type="Edm.DateTime" Mode="In" Precision="0" Nullable="true" sap:label="Reference Date" sap:display-format="Date">
+      <Documentation>
+       <Summary>Reference Date</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="NotificationReferenceTime" Type="Edm.Time" Mode="In" Precision="0" Nullable="true" sap:label="Reference Time">
+      <Documentation>
+       <Summary>Reference Time</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="SetMaintNotifToInProcess" ReturnType="cds_api_maintnotification.MaintenanceNotificationType" EntitySet="MaintenanceNotification" m:HttpMethod="POST" sap:action-for="cds_api_maintnotification.MaintenanceNotificationType">
+     <Parameter Name="MaintenanceNotification" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Notification">
+      <Documentation>
+       <Summary>Notification</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+   </EntityContainer>
+   <Annotations Target="cds_api_maintnotification.cds_api_maintnotification_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintNotificationItemActivityType/MaintNotificationActivity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintNotificationItemCauseType/MaintenanceNotificationCause" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationItemType/MaintenanceNotificationItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationPartnerType/NotificationPartnerObjectNmbr" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationPartnerType/PartnerFunction" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationType/NotificationText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.cds_api_maintnotification_Entities/MaintenanceNotification" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="FilterExpressionRestrictions">
+       <Collection>
+        <Record>
+         <PropertyValue Property="Property" PropertyPath="MaintNotificationLongText"/>
+         <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+        </Record>
+       </Collection>
+      </PropertyValue>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection>
+        <PropertyPath>PersonResponsibleName</PropertyPath>
+        <PropertyPath>ConcatenatedActiveSystStsName</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.NavigationRestrictions">
+     <Record>
+      <PropertyValue Property="RestrictedProperties">
+       <Collection>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Item"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Partner"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection>
+        <PropertyPath>MaintNotificationLongText</PropertyPath>
+        <PropertyPath>PersonResponsibleName</PropertyPath>
+        <PropertyPath>ConcatenatedActiveSystStsName</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintNotificationItemActivityType/MaintenanceNotification" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintNotificationItemActivityType/MaintenanceNotificationItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintNotificationItemCauseType/MaintenanceNotification" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintNotificationItemCauseType/MaintenanceNotificationItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationItemType/MaintenanceNotification" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationPartnerType/MaintenanceNotification" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationType/NotificationType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.cds_api_maintnotification_Entities/MaintenanceNotificationItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.NavigationRestrictions">
+     <Record>
+      <PropertyValue Property="RestrictedProperties">
+       <Collection>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_ItemActivity"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_ItemCause"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.MaintenanceNotificationType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.SemanticKey">
+     <Collection>
+      <PropertyPath>MaintenanceNotification</PropertyPath>
+     </Collection>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintnotification.cds_api_maintnotification_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+     <Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+      <PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <atom:link rel="self" href="https://host:port/sap/opu/odata/sap/API_MAINTNOTIFICATION/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+   <atom:link rel="latest-version" href="https://host:port/sap/opu/odata/sap/API_MAINTNOTIFICATION/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+  </Schema>
+ </edmx:DataServices>
+</edmx:Edmx>

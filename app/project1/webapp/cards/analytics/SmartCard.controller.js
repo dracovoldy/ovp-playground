@@ -137,12 +137,15 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
                 var cardId = oCompData.cardId;
                 var oCard = oDashboardLayoutUtil.dashboardLayoutModel.getCardById(cardId);
 
-                let { settings: { custom: { height: initial_height }, entitySet, chartAnnotationPath }, dashboardLayout: { height } } = oCard;
+                let { settings: { custom: { height: initial_height }, entitySet, chartAnnotationPath, presentationVariantAnnotationPath }, dashboardLayout: { height } } = oCard;
 
                 oSmartChart.setHeight(initial_height + 'px');
 
                 if (chartAnnotationPath) {
                     oSmartChart.data("chartQualifier", chartAnnotationPath.split('#')[1]);
+                }
+                if (presentationVariantAnnotationPath) {
+                    oSmartChart.data("presentationVariantQualifier", presentationVariantAnnotationPath.split('#')[1]);
                 }
                 oSmartChart.setEntitySet(entitySet);
 
