@@ -7,7 +7,7 @@
     <!-- Here you can put your Card's Header Area -->
 
     <!-- <l:HorizontalLayout> -->
-    <ComboBox>
+    <ComboBox id="tabSelector" visible="false">
         <core:Item key="1" text="By priority" />
         <core:Item key="2" text="By planning plant" />
         <core:Item key="3" text="By somethng else" />

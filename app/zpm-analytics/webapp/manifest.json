@@ -11,21 +11,10 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/v2/analytics/",
+                "uri": "/v2/catalog/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [
-                        "annotation0"
-                    ],
-                    "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
-                }
-            },
-            "annotation0": {
-                "type": "ODataAnnotation",
-                "uri": "annotations/annotation0.xml",
-                "settings": {
-                    "localUri": "annotations/annotation0.xml"
                 }
             }
         },

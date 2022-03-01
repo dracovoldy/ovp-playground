@@ -60,6 +60,14 @@
                 "credentials": {
                     "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_MAINTNOTIFICATION/"
                 }
+            },
+            "API_MAINTENANCEORDER": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_MAINTENANCEORDER",
+                "credentials": {
+                    "destination": "API_S4_HTTP_PP",
+                    "path": "/sap/opu/odata/sap/API_MAINTENANCEORDER"
+                }
             }
         }
     }

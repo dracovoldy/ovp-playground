@@ -1,33 +1,6 @@
 using {AnalyticsService} from './service';
 
-// annotate AnalyticsService.MaintOrdersAnalytics {
-//     @UI.ValueCriticality : [
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y1',
-//             Criticality : #Positive,
-//         },
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y2',
-//             Criticality : #Negative,
-//         },
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y3',
-//             Criticality : #Critical,
-//         },
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y4',
-//             Criticality : #Neutral,
-//         }
-//     ]
-//     MaintPriorityType
-
-// };
-
-annotate AnalyticsService.MaintOrdersAnalytics with{
+annotate AnalyticsService.MaintOrdersAnalytics with {
     MaintenanceOrderType @(Common : {
         Text            : MaintenanceOrderType_Text,
         TextArrangement : #TextLast,
@@ -36,19 +9,17 @@ annotate AnalyticsService.MaintOrdersAnalytics with{
 
 // Common Annotations
 annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {
-    DataPoint                 : {
+    DataPoint      : {
         $Type : 'UI.DataPointType',
         Value : OrderCounter,
     },
-    Identification            : [{
+    Identification : [{
         $Type : 'UI.DataField',
         Value : MaintenanceOrder,
     }]
 });
 
-annotate AnalyticsService.MaintOrdersAnalytics with
-@(UI : {
-    Chart : {
+annotate AnalyticsService.MaintOrdersAnalytics with @(UI : {Chart : {
     $Type               : 'UI.ChartDefinitionType',
     ChartType           : #Column,
     Measures            : ['OrderCounter'],
@@ -76,8 +47,7 @@ annotate AnalyticsService.MaintOrdersAnalytics with
 }});
 
 annotate AnalyticsService.MaintOrdersAnalytics with
-@(UI : {
-    Chart#ByOrderType : {
+@(UI : {Chart #ByOrderType : {
     $Type               : 'UI.ChartDefinitionType',
     ChartType           : #Column,
     Measures            : ['OrderCounter'],
@@ -86,16 +56,12 @@ annotate AnalyticsService.MaintOrdersAnalytics with
         Measure : 'OrderCounter',
         Role    : #Axis1
     }],
-    Dimensions          : [
-        'MaintenanceOrderType',
-    ],
-    DimensionAttributes : [
-        {
-            $Type     : 'UI.ChartDimensionAttributeType',
-            Dimension : 'MaintenanceOrderType',
-            Role      : #Category,
-        }
-    ]
+    Dimensions          : ['MaintenanceOrderType', ],
+    DimensionAttributes : [{
+        $Type     : 'UI.ChartDimensionAttributeType',
+        Dimension : 'MaintenanceOrderType',
+        Role      : #Category,
+    }]
 }});
 
 annotate AnalyticsService.MaintOrders with @(UI : {

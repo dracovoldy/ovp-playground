@@ -11,8 +11,6 @@ server:
       backend:
       - path: /v2
         url: http://localhost:4004
-      - path: /analytics
-        url: http://localhost:4004
       ui5:
         path: 
         - /resources

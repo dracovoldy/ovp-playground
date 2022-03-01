@@ -19,8 +19,7 @@
                 "settings": {
                     "odataVersion": "2.0",
                     "annotations": [
-                        "annotation",
-                        "annotation0"
+                        "annotation"
                     ],
                     "localUri": "localService/metadata.xml"
                 }
@@ -37,13 +36,6 @@
                 "uri": "annotations/annotation.xml",
                 "settings": {
                     "localUri": "annotations/annotation.xml"
-                }
-            },
-            "annotation0": {
-                "type": "ODataAnnotation",
-                "uri": "annotations/annotation0.xml",
-                "settings": {
-                    "localUri": "annotations/annotation0.xml"
                 }
             }
         },
@@ -138,8 +130,8 @@
         "archeType": "analytical"
     },
     "sap.ovp": {
-        "globalFilterModel": "mainService",
-        "globalFilterEntityType": "MaintOrders",
+        "globalFilterModel": "catalogService",
+        "globalFilterEntityType": "MaintenanceOrderAnalytics",
         "containerLayout": "resizable",
         "enableLiveFilter": true,
         "considerAnalyticalParameters": false,
@@ -152,9 +144,9 @@
                 "template": "project1.cards.analytics",
                 "settings": {
                     "title": "{{card01_title}}",
-                    "entitySet": "WorkOrderAnalytics1",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdersByWorkCenter",
-                    "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#OrdersByWorkCenterPreVar",
+                    "entitySet": "MaintenanceOrderAnalytics",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PhaseCodeByOrderType",
+                    "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
                     "defaultSpan": {
                         "rows": 1,
                         "cols": 1,
@@ -162,24 +154,6 @@
                     },
                     "custom": {
                         "height": 465
-                    }
-                }
-            },
-            "card00": {
-                "model": "catalogService",
-                "template": "sap.ovp.cards.charts.analytical",
-                "settings": {
-                    "title": "{{card00_title}}",
-                    "subTitle": "{{card00_subtitle}}",
-                    "entitySet": "WorkOrderAnalytics1",
-                    "navigation": "noHeaderNav",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OrdersByWorkCenter",
-                    "presentationAnnotationPath" : "com.sap.vocabularies.UI.v1.PresentationVariant#OrdersByWorkCenterPreVar",
-                    "stopResizing": false,
-                    "defaultSpan": {
-                        "rows": 1,
-                        "cols": 1,
-                        "showOnlyHeader": false
                     }
                 }
             }
