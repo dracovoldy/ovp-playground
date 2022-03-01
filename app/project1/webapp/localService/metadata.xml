@@ -1,203 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
-        <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
-        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
-        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
-        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
-    </edmx:Reference>
-    <edmx:DataServices>
-        <Schema Namespace="AnalyticsService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-            <EntityContainer Name="EntityContainer">
-                <EntitySet Name="MaintOrders" EntityType="AnalyticsService.MaintOrders"/>
-                <EntitySet Name="OrderTypes" EntityType="AnalyticsService.OrderTypes"/>
-                <EntitySet Name="MaintOrdersAnalytics" EntityType="AnalyticsService.MaintOrdersAnalytics"/>
-            </EntityContainer>
-            <EntityType Name="MaintOrders">
-                <Key>
-                    <PropertyRef Name="MaintenanceOrder"/>
-                </Key>
-                <Property Name="MaintenanceOrder" Type="Edm.String" Nullable="false"/>
-                <Property Name="MaintenanceOrderType" Type="Edm.String"/>
-                <Property Name="MaintenanceOrderType_Text" Type="Edm.String"/>
-                <Property Name="MaintPriority" Type="Edm.String"/>
-                <Property Name="MaintPriorityType" Type="Edm.String"/>
-            </EntityType>
-            <EntityType Name="OrderTypes">
-                <Key>
-                    <PropertyRef Name="ID"/>
-                </Key>
-                <Property Name="ID" Type="Edm.String" Nullable="false"/>
-                <Property Name="OrderTypeText" Type="Edm.String"/>
-            </EntityType>
-            <EntityType Name="MaintOrdersAnalytics">
-                <Key>
-                    <PropertyRef Name="MaintenanceOrder"/>
-                </Key>
-                <Property Name="MaintenanceOrder" Type="Edm.String" Nullable="false"/>
-                <Property Name="MaintenanceOrderType" Type="Edm.String"/>
-                <Property Name="MaintenanceOrderType_Text" Type="Edm.String"/>
-                <Property Name="MaintPriority" Type="Edm.String"/>
-                <Property Name="MaintPriorityType" Type="Edm.String"/>
-                <Property Name="OrderCounter" Type="Edm.Int32"/>
-            </EntityType>
-            <Annotations Target="AnalyticsService.MaintOrders">
-                <Annotation Term="UI.SelectionFields">
-                    <Collection>
-                        <PropertyPath>MaintPriorityType</PropertyPath>
-                        <PropertyPath>MaintenanceOrderType</PropertyPath>
-                        <PropertyPath>MaintenanceOrderType_Text</PropertyPath>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="UI.LineItem">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="MaintPriority"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="MaintPriorityType"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="MaintenanceOrderType"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="MaintenanceOrderType_Text"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrder">
-                <Annotation Term="Common.Label" String="Maintenance Order #"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrderType">
-                <Annotation Term="Common.Label" String="Order Type"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrders/MaintenanceOrderType_Text">
-                <Annotation Term="Common.Label" String="Order Type Text"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrders/MaintPriority">
-                <Annotation Term="Common.Label" String="Priority"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrders/MaintPriorityType">
-                <Annotation Term="Common.Label" String="Priority Type"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrdersAnalytics">
-                <Annotation Term="UI.DataPoint">
-                    <Record Type="UI.DataPointType">
-                        <PropertyValue Property="Value" Path="OrderCounter"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="UI.Identification">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="MaintenanceOrder"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="UI.Chart">
-                    <Record Type="UI.ChartDefinitionType">
-                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
-                        <PropertyValue Property="Measures">
-                            <Collection>
-                                <PropertyPath>OrderCounter</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="MeasureAttributes">
-                            <Collection>
-                                <Record Type="UI.ChartMeasureAttributeType">
-                                    <PropertyValue Property="Measure" PropertyPath="OrderCounter"/>
-                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="Dimensions">
-                            <Collection>
-                                <PropertyPath>MaintenanceOrderType</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="DimensionAttributes">
-                            <Collection>
-                                <Record Type="UI.ChartDimensionAttributeType">
-                                    <PropertyValue Property="Dimension" PropertyPath="MaintenanceOrderType"/>
-                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-                <Annotation Term="UI.Chart" Qualifier="ByOrderType">
-                    <Record Type="UI.ChartDefinitionType">
-                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
-                        <PropertyValue Property="Measures">
-                            <Collection>
-                                <PropertyPath>OrderCounter</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="MeasureAttributes">
-                            <Collection>
-                                <Record Type="UI.ChartMeasureAttributeType">
-                                    <PropertyValue Property="Measure" PropertyPath="OrderCounter"/>
-                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="Dimensions">
-                            <Collection>
-                                <PropertyPath>MaintenanceOrderType</PropertyPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="DimensionAttributes">
-                            <Collection>
-                                <Record Type="UI.ChartDimensionAttributeType">
-                                    <PropertyValue Property="Dimension" PropertyPath="MaintenanceOrderType"/>
-                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-                <Annotation Term="Aggregation.ApplySupported">
-                    <Record Type="Aggregation.ApplySupportedType">
-                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
-                    </Record>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="AnalyticsService.EntityContainer/MaintOrdersAnalytics">
-                <Annotation Term="Aggregation.ApplySupported">
-                    <Record Type="Aggregation.ApplySupportedType">
-                        <PropertyValue Property="PropertyRestrictions" Bool="true"/>
-                    </Record>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintenanceOrder">
-                <Annotation Term="Common.Label" String="Maintenance Order #"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintenanceOrderType">
-                <Annotation Term="Common.Text" String="MaintenanceOrderType_Text">
-                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
-                </Annotation>
-                <Annotation Term="Common.Label" String="Order Type"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintPriority">
-                <Annotation Term="Common.Label" String="Priority"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/MaintPriorityType">
-                <Annotation Term="Common.Label" String="Priority Type"/>
-            </Annotations>
-            <Annotations Target="AnalyticsService.MaintOrdersAnalytics/OrderCounter">
-                <Annotation Term="Aggregation.default" EnumMember="Aggregation.defaultType/SUM"/>
-                <Annotation Term="Core.Computed" Bool="true"/>
-                <Annotation Term="Common.Label" String="Number of Orders"/>
-            </Annotations>
-        </Schema>
-    </edmx:DataServices>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="CatalogService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="WorkOrderAnalytics1" EntityType="CatalogService.WorkOrderAnalytics1" sap:label="Maintenance Order" sap:semantics="aggregate"/>
+        <EntitySet Name="WorkOrderFilters" EntityType="CatalogService.WorkOrderFilters" sap:label="Maintenance Order"/>
+        <EntitySet Name="C_MaintOrderTypeVH" EntityType="CatalogService.C_MaintOrderTypeVH" sap:label="Maintenance Order Type Value Help"/>
+        <EntitySet Name="I_PMNotificationPriority" EntityType="CatalogService.I_PMNotificationPriority" sap:label="Notification Priority"/>
+      </EntityContainer>
+      <EntityType Name="WorkOrderAnalytics1" sap:eam-phase-model-enabled="true" sap:label="Maintenance Order" sap:content-version="1" sap:semantics="aggregate">
+        <Key>
+          <PropertyRef Name="ID__"/>
+        </Key>
+        <Property Name="ID__" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+        <Property Name="MaintenanceOrder" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="MaintenanceOrderDesc" sap:label="Order" sap:quickinfo="Order Number"/>
+        <Property Name="MaintPriority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:text="MaintPriority_Text" sap:label="Priority" sap:value-list="standard"/>
+        <Property Name="MaintPriority_Text" Type="Edm.String" MaxLength="20" sap:label="Priority Text" sap:creatable="false" sap:updatable="false"/>
+        <Property Name="MainWorkCenter" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:text="MainWorkCenter_Text" sap:label="Main Work Center" sap:quickinfo="Work Center" sap:value-list="standard"/>
+        <Property Name="MaintenancePlannerGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="MaintenancePlannerGroup_Text" sap:label="Planner Group" sap:quickinfo="Planner Group for Customer Service and Plant Maintenance" sap:value-list="standard"/>
+        <Property Name="MaintenancePlannerGroup_Text" Type="Edm.String" MaxLength="18" sap:label="Planner Group Name" sap:quickinfo="Name of the Maintenance Planner Group" sap:creatable="false" sap:updatable="false"/>
+        <Property Name="MaintenancePlanningPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="MaintenancePlanningPlantName" sap:label="Planning Plant" sap:quickinfo="Maintenance Planning Plant" sap:value-list="standard"/>
+        <Property Name="MaintenancePlanningPlantName" Type="Edm.String" MaxLength="30" sap:label="Planning Plant Name" sap:quickinfo="Plant Name"/>
+        <Property Name="MaintenanceOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="MaintenanceOrderTypeName" sap:label="Order Type" sap:value-list="fixed-values"/>
+        <Property Name="MaintOrdProcessSubPhaseCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:filter-restriction="multi-value" sap:text="MaintOrdProcessSubPhaseCode_Text" sap:label="Subphase" sap:quickinfo="Process Subphase" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+        <Property Name="ConcatenatedOrderPhaseCtrlText" Type="Edm.String" MaxLength="1000" sap:display-format="UpperCase" sap:filter-restriction="multi-value" sap:label="Phase Control" sap:quickinfo="Phase control codes for maintenance order" sap:sortable="false" sap:value-list="fixed-values"/>
+        <Property Name="Counter" Type="Edm.Int32" sap:label="Counter"/>
+      </EntityType>
+      <EntityType Name="WorkOrderFilters" sap:eam-phase-model-enabled="true" sap:label="Maintenance Order" sap:content-version="1">
+        <Property Name="MaintenanceOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="MaintenanceOrderTypeName" sap:label="Order Type" sap:value-list="fixed-values"/>
+        <Property Name="MaintenanceOrderTypeName" Type="Edm.String" MaxLength="40" sap:label="Order Type Text" sap:quickinfo="Name of an Order Type"/>
+        <Property Name="MaintPriority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:text="MaintPriority_Text" sap:label="Priority" sap:value-list="standard"/>
+        <Property Name="MaintPriorityType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:text="to_MaintenancePriorityType/MaintPriorityType_Text" sap:label="Priority Type" sap:value-list="fixed-values"/>
+      </EntityType>
+      <EntityType Name="C_MaintOrderTypeVH" sap:label="Maintenance Order Type Value Help" sap:content-version="1">
+        <Key>
+          <PropertyRef Name="MaintenanceOrderType"/>
+        </Key>
+        <Property Name="MaintenanceOrderType" Type="Edm.String" MaxLength="4" Nullable="false" sap:display-format="UpperCase" sap:text="MaintenanceOrderTypeName" sap:label="Order Type"/>
+        <Property Name="MaintenanceOrderTypeName" Type="Edm.String" MaxLength="40" sap:label="Order Type Text" sap:quickinfo="Name of an Order Type"/>
+      </EntityType>
+      <EntityType Name="I_PMNotificationPriority" sap:label="Notification Priority" sap:content-version="1">
+        <Key>
+          <PropertyRef Name="MaintPriority"/>
+          <PropertyRef Name="MaintPriorityType"/>
+        </Key>
+        <Property Name="MaintPriority" Type="Edm.String" MaxLength="1" Nullable="false" sap:display-format="UpperCase" sap:text="MaintPriority_Text" sap:label="Priority"/>
+        <Property Name="MaintPriorityType" Type="Edm.String" MaxLength="2" Nullable="false" sap:display-format="UpperCase" sap:label="Priority Type"/>
+        <Property Name="MaintPriority_Text" Type="Edm.String" MaxLength="20" sap:label="Priority Text" sap:creatable="false" sap:updatable="false"/>
+        <Property Name="MaintPriorityColorCode" Type="Edm.Int32"/>
+      </EntityType>
+      <Annotations Target="CatalogService.WorkOrderAnalytics1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Aggregation.ApplySupported">
+          <Record Type="Aggregation.ApplySupportedType">
+            <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>MaintenanceOrderType</PropertyPath>
+            <PropertyPath>MaintPriority</PropertyPath>
+            <PropertyPath>MaintenancePlanningPlant</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant" Qualifier="Chart1">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#MaintPriorityByOrderType</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Chart" Qualifier="MaintPriorityByOrderType">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>MaintPriority</PropertyPath>
+                <PropertyPath>MaintenanceOrderType</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="MaintPriority"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="MaintenanceOrderType"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>Counter</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="Counter"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.EntityContainer/WorkOrderAnalytics1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Aggregation.ApplySupported">
+          <Record Type="Aggregation.ApplySupportedType">
+            <PropertyValue Property="PropertyRestrictions" Bool="true"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant" Qualifier="Chart1">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.Chart#MaintPriorityByOrderType</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderAnalytics1/ID__" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderAnalytics1/MaintPriority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="MaintPriority"/>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderAnalytics1/MaintenanceOrderType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Label" String="MaintenanceOrderType"/>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderAnalytics1/Counter" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Aggregation.default" EnumMember="Aggregation.defaultType/COUNTDISTINCT"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Counter"/>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderFilters" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>MaintenanceOrderType</PropertyPath>
+            <PropertyPath>MaintPriority</PropertyPath>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderFilters/MaintenanceOrderType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Text" Path="MaintenanceOrderTypeName">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+        </Annotation>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Order Type"/>
+            <PropertyValue Property="CollectionPath" String="C_MaintOrderTypeVH"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="ValueListProperty" String="MaintenanceOrderType"/>
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="MaintenanceOrderType"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="MaintenanceOrderType"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="MaintenanceOrderTypeName"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderFilters/MaintenanceOrderTypeName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderFilters/MaintPriority" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Common.Text" Path="MaintPriority">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextSeparate"/>
+        </Annotation>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Priority"/>
+            <PropertyValue Property="CollectionPath" String="I_PMNotificationPriority"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="ValueListProperty" String="MaintPriority"/>
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="MaintPriority"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="MaintPriorityType"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="MaintPriority_Text"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.WorkOrderFilters/MaintPriorityType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
 </edmx:Edmx>

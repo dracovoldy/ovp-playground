@@ -17,7 +17,7 @@
     "scripts": {
         "start": "cds run",
         "watch": "cds watch --open project1/webapp/test/flpSandbox.html#project1-tile",
-        "app2": "cds watch --open zpm-analytics/webapp/test/flpSandbox.html#dcorechevronzpmanalytics-display"
+        "smartchart": "cds watch --open zpm-analytics/webapp/test/flpSandbox.html#dcorechevronzpmanalytics-display"
     },
     "eslintConfig": {
         "extends": "eslint:recommended",
@@ -58,7 +58,8 @@
                 "kind": "odata-v2",
                 "model": "srv/external/API_MAINTNOTIFICATION",
                 "credentials": {
-                    "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_MAINTNOTIFICATION/"
+                    "destination": "API_S4_HTTP_PP",
+                    "path": "/sap/opu/odata/sap/API_MAINTNOTIFICATION"
                 }
             },
             "API_MAINTENANCEORDER": {

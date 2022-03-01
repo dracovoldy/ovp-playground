@@ -34,5 +34,3 @@ entity MaintenanceOrder   as projection on maintorderext.MaintenanceOrder {
 //         MaintPriority                : String(1);
 //         Counter                      : Integer default 1;
 // }
-
-
