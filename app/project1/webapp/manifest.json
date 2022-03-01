@@ -156,6 +156,39 @@
                         "height": 465
                     }
                 }
+            },
+            "card02": {
+                "model": "catalogService",
+                "template": "project1.cards.analytics",
+                "settings": {
+                    "title": "{{card02_title}}",
+                    "tabs": [
+                        {
+                            "entitySet": "MaintenanceOrderAnalytics",
+                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PhaseCodeByOrderType",
+                            "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint",
+                            "value": "{{cardtitlebyPhase}}"
+                        },
+                        {
+                            "entitySet": "MaintenanceOrderAnalytics",
+                            "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PriorityByOrderType",
+                            "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart2",
+                            "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+                            "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint",
+                            "value": "{{cardtitlebyPriority}}"
+                        }
+                    ],
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 2,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465
+                    }
+                }
             }
         }
     }

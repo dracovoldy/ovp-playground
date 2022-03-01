@@ -31,6 +31,29 @@ annotate CatalogService.MaintenanceOrderAnalytics with @(
                 Measure : 'Counter',
                 Role    : #Axis1
             }]
+        },
+        PresentationVariant #Chart2 : {Visualizations : ['@UI.Chart#PriorityByOrderType']},
+        Chart #PriorityByOrderType : {
+            ChartType           : #ColumnStacked,
+            Dimensions          : [
+                'MaintPriority',
+                'MaintenanceOrderType'
+            ],
+            DimensionAttributes : [
+                {
+                    Dimension : 'MaintPriority',
+                    Role      : #Category
+                },
+                {
+                    Dimension : 'MaintenanceOrderType',
+                    Role      : #Series
+                }
+            ],
+            Measures            : ['Counter'],
+            MeasureAttributes   : [{
+                Measure : 'Counter',
+                Role    : #Axis1
+            }]
         }
     }
 );
