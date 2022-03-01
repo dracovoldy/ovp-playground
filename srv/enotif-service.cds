@@ -1,4 +1,4 @@
-using {chevron.ui.maintnotifdashboard as mtd} from '../db/schema';
+using {com.analytics.pm as mtd} from '../db/schema';
 
 @path : '/service'
 service EMaintNotificationService {

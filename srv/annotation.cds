@@ -1,32 +1,5 @@
 using {AnalyticsService} from './service';
 
-// annotate AnalyticsService.MaintOrdersAnalytics {
-//     @UI.ValueCriticality : [
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y1',
-//             Criticality : #Positive,
-//         },
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y2',
-//             Criticality : #Negative,
-//         },
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y3',
-//             Criticality : #Critical,
-//         },
-//         {
-//             $Type       : 'UI.ValueCriticalityType',
-//             Value       : 'Y4',
-//             Criticality : #Neutral,
-//         }
-//     ]
-//     MaintPriorityType
-
-// };
-
 annotate AnalyticsService.MaintOrdersAnalytics with{
     MaintenanceOrderType @(Common : {
         Text            : MaintenanceOrderType_Text,
