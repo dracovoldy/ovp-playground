@@ -12,10 +12,10 @@
     <smartchart:SmartChart
         persistencyKey="schart"
         enableAutoBinding="true"
-        useVariantManagement="false"
+        useVariantManagement="true"
         useChartPersonalisation="true"
         showFullScreenButton="true"
-        selectionMode="Multi"
+        selectionMode="Single"
         showChartTooltip="true"
         showDrillBreadcrumbs="false"
         showDetailsButton="false"

@@ -123,19 +123,25 @@ sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
                 var cardId = oCompData.cardId;
 
                 var oCard = oDashboardLayoutUtil.dashboardLayoutModel.getCardById(cardId);
-                let { settings: { subTitle } } = oCard;
+                let { settings: { subTitle, tabs } } = oCard;
 
                 var oSmartChart = this.getView().byId(this.getView().getId() + "--ovpCardContentContainer").getAggregation("items")[0];
                 var calcHeight;
 
                 // Hack to pass new height to the smart chart
-                if (!subTitle) {
-                    calcHeight = parseInt((oEvent.height.split('px')[0]) - (oEvent.headerHeight * 1.22)) + 'px';
+                if (tabs && !subTitle) {
+                    oSmartChart = this.getView().byId(this.getView().getId() + "--ovpCardContentContainer").getAggregation("items")[1];
+                    calcHeight = parseInt((oEvent.height.split('px')[0]) - (oEvent.headerHeight * 0.8)) + 'px';
+                    oSmartChart.setHeight(calcHeight);
+                    return;
+                } else if (!subTitle){
+                    calcHeight = parseInt((oEvent.height.split('px')[0]) - (oEvent.headerHeight * 1.00)) + 'px';
                     oSmartChart.setHeight(calcHeight);
                     return;
                 } else {
                     calcHeight = parseInt((oEvent.height.split('px')[0]) - (oEvent.headerHeight * 1.5)) + 'px';
                     oSmartChart.setHeight(calcHeight);
+                    return;
                 }
 
             },
