@@ -1,3 +1,5 @@
+/*
+
 using {CatalogService} from './cat-service';
 
 annotate CatalogService.WorkOrderFilters with @(
@@ -58,3 +60,5 @@ annotate CatalogService.WorkOrderFilters with{
         }
     });
 };
+
+*/

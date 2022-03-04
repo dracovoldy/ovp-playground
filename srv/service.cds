@@ -1,4 +1,7 @@
+/*
+
 using {deloitte.analytics.pm as model} from '../db/data-model';
+
 
 service AnalyticsService {
 
@@ -25,3 +28,5 @@ service AnalyticsService {
             OrderCounter
     };
 }
+
+*/

@@ -1,3 +1,5 @@
+/*
+
 using {AnalyticsService} from './service';
 
 annotate AnalyticsService.MaintOrdersAnalytics with {
@@ -78,3 +80,5 @@ annotate AnalyticsService.MaintOrders with @(UI : {
         {Value : MaintenanceOrderType_Text},
     ],
 });
+
+*/

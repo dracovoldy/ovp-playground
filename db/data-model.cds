@@ -1,3 +1,5 @@
+/*
+
 namespace deloitte.analytics.pm;
 
 entity MaintOrders {
@@ -35,3 +37,5 @@ view MaintOrderCube as
             MaintPriorityType,
             1                        as OrderCounter : Integer
     };
+
+*/

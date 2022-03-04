@@ -144,7 +144,7 @@ module.exports = cds.service.impl(async (srv) => {
         let res_orders_and_dates = res_orders.map(async order => {
             if (order.LatestAcceptableCompletionDate) {
                 // let lacd = dateJSONToEDM(order.LatestAcceptableCompletionDate);
-                req_caldate = await ZZ1_CALENDARDATE_CDS.tx(req).get(`/ZZ1_CALENDARDATE?$filter=CalendarDate eq datetime'${order.LatestAcceptableCompletionDate + 'T00:00:00'}'`);
+                // req_caldate = await ZZ1_CALENDARDATE_CDS.tx(req).get(`/ZZ1_CALENDARDATE?$filter=CalendarDate eq datetime'${order.LatestAcceptableCompletionDate + 'T00:00:00'}'`);
 
                 /* 
                 "CalendarDate" : "\/Date(1638489600000)\/",
@@ -163,9 +163,14 @@ module.exports = cds.service.impl(async (srv) => {
                 "YearDay" : "2021337"
                 */
 
-                order.CalendarYear = req_caldate[0].CalendarYear;
-                order.CalendarMonth = req_caldate[0].CalendarMonth;
-                order.CompletionDateDim = req_caldate[0].CalendarMonth + " " + req_caldate[0].CalendarYear;
+                // order.CalendarYear = req_caldate[0].CalendarYear;
+                // order.CalendarMonth = req_caldate[0].CalendarMonth;
+                // order.CompletionDateDim = req_caldate[0].CalendarMonth + " " + req_caldate[0].CalendarYear;
+
+                let aDate = order.LatestAcceptableCompletionDate.split('-');
+                order.CalendarYear = aDate[0];
+                order.CalendarMonth = aDate[1];
+                order.CompletionDateDim = aDate[0] + "-" + aDate[1];                
             }
 
             return order;
