@@ -118,7 +118,13 @@
             }
         },
         "extends": {
-            "extensions": {}
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.ovp.app.Main": {
+						"controllerName": "project1.ext.OVPControllerExt"
+					}
+                }
+            }
         },
         "contentDensities": {
             "compact": true,
@@ -139,25 +145,6 @@
             "showDataLabel": true
         },
         "cards": {
-            "card01": {
-                "model": "catalogService",
-                "template": "project1.cards.analytics",
-                "settings": {
-                    "title": "{{card01_title}}",
-                    "entitySet": "MaintenanceOrderAnalytics",
-                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PhaseCodeByOrderType",
-                    "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
-                    "defaultSpan": {
-                        "rows": 1,
-                        "cols": 1,
-                        "showOnlyHeader": false
-                    },
-                    "custom": {
-                        "height": 465,
-                        "showZoomButtons": true
-                    }
-                }
-            },
             "card02": {
                 "model": "catalogService",
                 "template": "project1.cards.analytics",
@@ -188,6 +175,25 @@
                     },
                     "custom": {
                         "height": 465
+                    }
+                }
+            },
+            "card03": {
+                "model": "catalogService",
+                "template": "project1.cards.analytics",
+                "settings": {
+                    "title": "{{card03_title}}",
+                    "entitySet": "MaintenanceOrderAgeAnalytics",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#CompleteionDateByOrderType",
+                    "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 3,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465,
+                        "showZoomButtons": true
                     }
                 }
             }

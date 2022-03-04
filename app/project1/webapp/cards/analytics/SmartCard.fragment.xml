@@ -12,7 +12,7 @@
     <smartchart:SmartChart
         persistencyKey="schart"
         enableAutoBinding="true"
-        useVariantManagement="true"
+        useVariantManagement="false"
         useChartPersonalisation="true"
         showFullScreenButton="true"
         selectionMode="Single"

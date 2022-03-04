@@ -2,7 +2,8 @@ using {com.analytics.pm as schema} from '../db/schema';
 
 service CatalogService {
 
-    view MaintenanceOrderAnalytics as SELECT FROM schema.MaintenanceOrder {
+    view MaintenanceOrderAnalytics as
+        select from schema.MaintenanceOrder {
             MaintenanceOrder,
             MaintenanceOrderType,
             MaintenanceOrderDesc,
@@ -14,6 +15,20 @@ service CatalogService {
             MaintenanceOrderPlanningCode,
             MaintenancePlannerGroup,
             MaintPriority,
+            MaintenancePhaseControl,
+            MaintOrderReferenceDate,
             Counter
-        }
+        };
+
+    view MaintenanceOrderAgeAnalytics as 
+    select from schema.MaintOrderCalendarDate {
+        MaintenanceOrder,
+        MaintenanceOrderType,
+        LatestAcceptableCompletionDate,
+        CalendarYear,
+        CalendarWeek,
+        CompletionDateDim,
+        MaintOrderReferenceDate,
+        Counter
+    }
 }

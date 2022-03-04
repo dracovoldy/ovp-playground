@@ -12,6 +12,15 @@
       "skipFiles": [
         "<node_internals>/**"
       ]
+    },
+    {
+      "command": "cds watch",
+      "name": "cds watch",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }

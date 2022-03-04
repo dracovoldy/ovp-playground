@@ -69,6 +69,14 @@
                     "destination": "API_S4_HTTP_PP",
                     "path": "/sap/opu/odata/sap/API_MAINTENANCEORDER"
                 }
+            },
+            "ZZ1_CALENDARDATE_CDS": {
+                "kind": "odata-v2",
+                "model": "srv/external/ZZ1_CALENDARDATE_CDS",
+                "credentials": {
+                    "destination": "API_S4_HTTP_PP",
+                    "path": "/sap/opu/odata/sap/ZZ1_CALENDARDATE_CDS"
+                }
             }
         }
     }
