@@ -119,11 +119,7 @@
         },
         "extends": {
             "extensions": {
-                "sap.ui.controllerExtensions": {
-                    "sap.ovp.app.Main": {
-						"controllerName": "project1.ext.OVPControllerExt"
-					}
-                }
+                
             }
         },
         "contentDensities": {

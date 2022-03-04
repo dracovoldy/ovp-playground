@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZZ1_CALENDARDATE_CDS" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+                <EntityType Name="ZZ1_CALENDARDATEType" sap:label="CALENDARDATE" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="CalendarDate"/>
+                    </Key>
+                    <Property Name="CalendarDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:required-in-filter="false" sap:label="Calendar Date"/>
+                    <Property Name="CalendarYear" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Calendar Year"/>
+                    <Property Name="CalendarQuarter" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Calendar Quarter"/>
+                    <Property Name="CalendarMonth" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Calendar Month"/>
+                    <Property Name="CalendarWeek" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Calendar Week"/>
+                    <Property Name="CalendarDay" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Calendar Day"/>
+                    <Property Name="YearMonth" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Year Month"/>
+                    <Property Name="YearQuarter" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Year Quarter"/>
+                    <Property Name="YearWeek" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Year Week"/>
+                    <Property Name="WeekDay" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Week Day"/>
+                    <Property Name="FirstDayOfWeekDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:required-in-filter="false" sap:label="First day of week date"/>
+                    <Property Name="FirstDayOfMonthDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:required-in-filter="false" sap:label="First Day of Month" sap:quickinfo="First Day of Month Date"/>
+                    <Property Name="CalendarDayOfYear" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Calendar day of year"/>
+                    <Property Name="YearDay" Type="Edm.String" MaxLength="7" sap:display-format="NonNegative" sap:required-in-filter="false" sap:label="Day of the year" sap:quickinfo="Year Day"/>
+                </EntityType>
+                <EntityContainer Name="ZZ1_CALENDARDATE_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                    <EntitySet Name="ZZ1_CALENDARDATE" EntityType="ZZ1_CALENDARDATE_CDS.ZZ1_CALENDARDATEType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                </EntityContainer>
+                <Annotations Target="ZZ1_CALENDARDATE_CDS.ZZ1_CALENDARDATE_CDS_Entities"
+                    xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                    <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                </Annotations>
+                <atom:link rel="self" href="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/sap/ZZ1_CALENDARDATE_CDS/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                    <atom:link rel="latest-version" href="https://DR1.SAP.CHEVRON.COM:43300/sap/opu/odata/sap/ZZ1_CALENDARDATE_CDS/$metadata"
+                        xmlns:atom="http://www.w3.org/2005/Atom"/>
+                    </Schema>
+                </edmx:DataServices>
+            </edmx:Edmx>
