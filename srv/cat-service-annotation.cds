@@ -89,6 +89,30 @@ annotate CatalogService.MaintenanceOrderCompleteAnalytics with @(
     }
 );
 
+annotate CatalogService.MaintenanceOrderAgeAnalytics with @(
+    Aggregation : {ApplySupported : {PropertyRestrictions : true}},
+    UI          : {
+        PresentationVariant #Chart1 : {Visualizations : ['@UI.Chart#AgeCount']},
+        Chart #AgeCount : {
+            ChartType           : #Column,
+            Dimensions          : [
+                'Bucket'
+            ],
+            DimensionAttributes : [
+                {
+                    Dimension : 'Bucket',
+                    Role      : #Series
+                }
+            ],
+            Measures            : ['Counter'],
+            MeasureAttributes   : [{
+                Measure : 'Counter',
+                Role    : #Axis1
+            }]
+        }
+    }
+);
+
 annotate CatalogService.MaintenanceOrderAnalytics with {
     @Analytics.Dimension : true
     MaintPriority            @(title : '{i18n>MaintPriority}');
@@ -117,8 +141,6 @@ annotate CatalogService.MaintenanceOrderCompleteAnalytics with {
 };
 
 annotate CatalogService.MaintenanceOrderAgeAnalytics with {
-    @Analytics.Dimension : true
-    DateRange            @(title : '{i18n>DateRange}');
     @Analytics.Dimension : true
     Bucket               @(title : '{i18n>Bucket}');
     @Analytics.Measure   : true

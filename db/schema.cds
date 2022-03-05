@@ -44,7 +44,7 @@ entity MaintOrderChangeDocs as
     select from maintorderext.MaintenanceOrder {
         key MaintenanceOrder,
             MaintenanceOrderInternalID,
-            virtual '' as DateRange : String(10),
+            MaintOrderReferenceDate,
             virtual '' as Bucket : String(10),
             virtual 1 as Counter : Integer
     };

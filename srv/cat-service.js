@@ -17,6 +17,40 @@ const iWeekNo    = sDate => {
     return iWeekNo.toString();
 };
 
+const UTCDate = sDate => {
+    let date = new Date(sDate);
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    return date;
+}
+
+function dayDiff(date1, date2) {
+    let millisPerDay = 24 * 60 * 60 * 1000;
+    return (UTCDate(date2) - UTCDate(date1)) / millisPerDay;
+}
+
+const calculateBucket = date => {
+    let now   = new Date(),
+        today = now.getFullYear() + "-" + now.getDate() + "-" + (now.getMonth() + 1);
+        diff  = dayDiff(date, today);
+        if (diff > 0 && diff < 7) {
+            return "< 7 Days";
+        } else if (diff > 6 && diff < 14) {
+            return "< 14 Days";
+        } else if (diff > 13 && diff < 31) {
+            return "< Month";
+        } else if (diff > 30 && diff < 45) {
+            return "< 45 Days";
+        } else if (diff > 44 && diff < 60) {
+            return "< 2 Months";
+        } else if (diff > 59 && diff < 90) {
+            return "< 3 Months";
+        } else if (diff > 89 && diff < 180) {
+            return "< 6 Months";
+        } else {
+            return "> 6 Months";
+        }
+};
+
 module.exports = cds.service.impl(async (srv) => {
     const API_MAINTENANCEORDER = await cds.connect.to('API_MAINTENANCEORDER');
     const ZZ1_CALENDARDATE_CDS = await cds.connect.to('ZZ1_CALENDARDATE_CDS');
@@ -188,6 +222,8 @@ module.exports = cds.service.impl(async (srv) => {
     // Join with I_SystemUserChangeDocs to calculate Age Dimension Bucket
     srv.on(['READ'], MaintenanceOrderAgeAnalytics, async (req) => {
 
+        let { xpr } = cds.parse.expr("MaintOrderReferenceDate > '2022-01-01' and MaintOrderReferenceDate < '2022-03-04'");
+        
         let query = SELECT.from(req.query.SELECT.from)
             // .columns(req.query.SELECT.columns)
             .limit(req.query.SELECT.limit);
@@ -201,13 +237,11 @@ module.exports = cds.service.impl(async (srv) => {
                 ...req.query.SELECT.where
             ]);
         } 
-        /*
         else {
             query.where([
                 ...xpr,
             ]);
         }
-        */
 
         if (req.query.SELECT.orderBy) {
             query.orderBy(req.query.SELECT.orderBy)
@@ -227,17 +261,30 @@ module.exports = cds.service.impl(async (srv) => {
 
         let orders_tab = arq.from(res_orders);
 
-        let res_docs = await ZZ1_SYSTEMUSERCHANGEDOCS_CDS.tx(req).run({ // limit this - there are more than 35,000 records - 5 second download.
-            SELECT: { from: { ref: ["ZZ1_SYSTEMUSERCHANGEDOCS_CDS.ZZ1_SystemUserChangeDocs"] } } 
+        // limit this - there are more than 35,000 records - 5 second download.
+        let res_docs = await ZZ1_SYSTEMUSERCHANGEDOCS_CDS.tx(req).run({ 
+            SELECT: { 
+                from: { ref: ["ZZ1_SYSTEMUSERCHANGEDOCS_CDS.ZZ1_SystemUserChangeDocs"] },
+                where:  [ 
+                    "(",
+                        { ref: ["ChangeDocumentStatusDate"] }, ">", { val: '2022-01-01' }, 
+                        "and", 
+                        { ref: ["ChangeDocumentStatusDate"] }, "<", { val: '2022-03-04' }, 
+                    ")",
+                    "and",
+                    { ref: ["ApplicationStatus"] }, "=", { val: 'I0001' }
+                ]
+            } 
         });
 
         let docs_tab = arq.from(res_docs),
-            join = orders_tab.join_left(docs_tab, ['MaintenanceOrderInternalID', 'ApplicationStatusObject']),
-            output = join.objects();
+            join = orders_tab.join_left(docs_tab, ['MaintenanceOrderInternalID', 'ApplicationStatusObject'])
+                             .derive({Bucket: arq.escape(join => calculateBucket(join.MaintOrderReferenceDate))})
+                             .groupby(['Bucket'])
+                             .rollup({__AGGREGATION__Counter: arq.op.count()}),
+            result = join.objects();
 
-        return [
-            {}, {}, {}
-        ];
+        return result;
         
     });
 

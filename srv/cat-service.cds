@@ -36,10 +36,9 @@ service CatalogService {
         select from schema.MaintOrderChangeDocs {
             MaintenanceOrder,
             MaintenanceOrderInternalID,
-            DateRange,
+            MaintOrderReferenceDate,
             Bucket,
             Counter
         };
-
-
+        
 }

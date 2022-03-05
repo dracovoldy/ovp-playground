@@ -192,6 +192,25 @@
                         "showZoomButtons": true
                     }
                 }
+            },
+            "card04": {
+                "model": "catalogService",
+                "template": "project1.cards.analytics",
+                "settings": {
+                    "title": "{{card04_title}}",
+                    "entitySet": "MaintenanceOrderAgeAnalytics",
+                    "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#AgeCount",
+                    "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
+                    "defaultSpan": {
+                        "rows": 1,
+                        "cols": 3,
+                        "showOnlyHeader": false
+                    },
+                    "custom": {
+                        "height": 465,
+                        "showZoomButtons": true
+                    }
+                }
             }
         }
     }
