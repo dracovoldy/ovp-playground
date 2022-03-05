@@ -3,8 +3,8 @@ namespace com.analytics.pm;
 using {managed} from '@sap/cds/common';
 using {API_MAINTENANCEORDER as maintorderext} from '../srv/external/API_MAINTENANCEORDER.csn';
 using {ZZ1_CALENDARDATE_CDS as caldateext} from '../srv/external/ZZ1_CALENDARDATE_CDS.csn';
+using {ZZ1_SYSTEMUSERCHANGEDOCS_CDS as changedocsext} from '../srv/external/ZZ1_SYSTEMUSERCHANGEDOCS_CDS.csn';
 
-@mashup
 entity MaintenanceOrder       as
     select from maintorderext.MaintenanceOrder {
         key MaintenanceOrder,
@@ -37,7 +37,16 @@ entity MaintOrderCalendarDate as
             virtual '' as CalendarWeek: String(2),
             virtual null as CalendarDate: DateTime,
             virtual null as CompletionDateDim: String(7),
-            virtual 1 as Counter : Integer,
+            virtual 1 as Counter : Integer
+    };
+
+entity MaintOrderChangeDocs as
+    select from maintorderext.MaintenanceOrder {
+        key MaintenanceOrder,
+            MaintenanceOrderInternalID,
+            virtual '' as DateRange : String(10),
+            virtual '' as Bucket : String(10),
+            virtual 1 as Counter : Integer
     };
 
 // @mashup

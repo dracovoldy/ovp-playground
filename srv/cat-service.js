@@ -1,5 +1,6 @@
 const cds = require('@sap/cds');
 const alasql = require('alasql');
+const arq    = require('arquero');
 
 const dateJSONToEDM = jsonDate => {
     const content = /\d+/.exec(String(jsonDate));
@@ -9,35 +10,19 @@ const dateJSONToEDM = jsonDate => {
     return string;
 };
 
-// class catalogservice extends cds.ApplicationService {
-//     async init() {
-//         const { MaintenanceOrderAnalytics } = this.entities;
-//         // const API_MAINTENANCEORDER = await cds.connect.to('API_MAINTENANCEORDER');
-//         this.on('READ', MaintenanceOrderAnalytics, async (req) => {
-//             // let result = await API_MAINTENANCEORDER.tx(req).run({SELECT: { from: { ref: ["API_MAINTENANCEORDER.MaintenanceOrder"] } } });
-//             if (req.query.SELECT.columns[0].func === 'sum') {
-//                 req.query.SELECT.columns[0].as = "Counter"; // silly attempt to overwrite alias "CounterAggregate"
-//                 let result = [ // Test Data to render an analytical card
-//                     { "MaintOrdProcessPhaseCode": "AB", "MaintenanceOrderType": "YA04", "Counter": 2 },
-//                     { "MaintOrdProcessPhaseCode": "AB", "MaintenanceOrderType": "YB01", "Counter": 4 },
-//                     { "MaintOrdProcessPhaseCode": "AC", "MaintenanceOrderType": "YA02", "Counter": 1 },
-//                     { "MaintOrdProcessPhaseCode": "AD", "MaintenanceOrderType": "YB01", "Counter": 2 }
-//                 ];
-
-//                 console.log(result)
-//                 return result;
-//             }
-//         });
-//         return super.init();
-//     }
-// }
-// module.exports = { catalogservice };
+const iWeekNo    = sDate => {
+    let oDate    = new Date(sDate),
+        oJan1    = new Date(oDate.getFullYear(), 0, 1),
+        iWeekNo  = Math.ceil((((oDate - oJan1) / 86400000) + oJan1.getDay() + 1) / 7);
+    return iWeekNo.toString();
+};
 
 module.exports = cds.service.impl(async (srv) => {
     const API_MAINTENANCEORDER = await cds.connect.to('API_MAINTENANCEORDER');
     const ZZ1_CALENDARDATE_CDS = await cds.connect.to('ZZ1_CALENDARDATE_CDS');
+    const ZZ1_SYSTEMUSERCHANGEDOCS_CDS = await cds.connect.to('ZZ1_SYSTEMUSERCHANGEDOCS_CDS');
 
-    const { MaintenanceOrderAnalytics, MaintenanceOrderAgeAnalytics } = srv.entities;
+    const { MaintenanceOrderAnalytics, MaintenanceOrderCompleteAnalytics, MaintenanceOrderAgeAnalytics } = srv.entities;
 
     srv.on(['READ'], MaintenanceOrderAnalytics, async (req) => {
 
@@ -100,7 +85,7 @@ module.exports = cds.service.impl(async (srv) => {
 
 
     // Join with I_CalendarDate to calculate Completed By Date Dimension Bucket
-    srv.on(['READ'], MaintenanceOrderAgeAnalytics, async (req) => {
+    srv.on(['READ'], MaintenanceOrderCompleteAnalytics, async (req) => {
 
         // let internalFilters = [{ LatestAcceptableCompletionDate: { '!=': null } }]
 
@@ -167,10 +152,11 @@ module.exports = cds.service.impl(async (srv) => {
                 // order.CalendarMonth = req_caldate[0].CalendarMonth;
                 // order.CompletionDateDim = req_caldate[0].CalendarMonth + " " + req_caldate[0].CalendarYear;
 
-                let aDate = order.LatestAcceptableCompletionDate.split('-');
+                let aDate   = order.LatestAcceptableCompletionDate.split('-'),
+                    sWeekNo = iWeekNo(order.LatestAcceptableCompletionDate);
                 order.CalendarYear = aDate[0];
                 order.CalendarMonth = aDate[1];
-                order.CompletionDateDim = aDate[0] + "-" + aDate[1];                
+                order.CompletionDateDim = "W " + sWeekNo + " Y " + aDate[0];                
             }
 
             return order;
@@ -199,17 +185,61 @@ module.exports = cds.service.impl(async (srv) => {
         return res_orders_and_dates;
     });
 
-    // srv.on(['READ'], WorkOrderFilters, async (req) => {
-    //     return API_MAINTENANCEORDER.tx(req).run(req.query);
-    // });
+    // Join with I_SystemUserChangeDocs to calculate Age Dimension Bucket
+    srv.on(['READ'], MaintenanceOrderAgeAnalytics, async (req) => {
 
-    // srv.on(['READ'], C_MaintOrderTypeVH, async (req) => {
-    //     return API_MAINTENANCEORDER.tx(req).run(req.query);
-    // });
+        let query = SELECT.from(req.query.SELECT.from)
+            // .columns(req.query.SELECT.columns)
+            .limit(req.query.SELECT.limit);
 
-    // srv.on(['READ'], I_PMNotificationPriority, async (req) => {
-    //     return API_MAINTENANCEORDER.tx(req).run(req.query);
-    // });
+        if (req.query.SELECT.where) {
+            // query.where(req.query.SELECT.where);
+
+            query.where([
+                ...xpr,
+                'and',
+                ...req.query.SELECT.where
+            ]);
+        } 
+        /*
+        else {
+            query.where([
+                ...xpr,
+            ]);
+        }
+        */
+
+        if (req.query.SELECT.orderBy) {
+            query.orderBy(req.query.SELECT.orderBy)
+        }
+
+        if (req.query.SELECT.groupBy) {
+            // Ignore GroupBy as it is not supported by API ODATA V2 in CSN.
+            // query.groupBy(req.query.SELECT.groupBy)
+        }
+
+        // Get all maintenance orders
+        let res_orders = await API_MAINTENANCEORDER.tx(req).send({
+            query: query,
+        });
+
+        // console.log(res_orders)
+
+        let orders_tab = arq.from(res_orders);
+
+        let res_docs = await ZZ1_SYSTEMUSERCHANGEDOCS_CDS.tx(req).run({ // limit this - there are more than 35,000 records - 5 second download.
+            SELECT: { from: { ref: ["ZZ1_SYSTEMUSERCHANGEDOCS_CDS.ZZ1_SystemUserChangeDocs"] } } 
+        });
+
+        let docs_tab = arq.from(res_docs),
+            join = orders_tab.join_left(docs_tab, ['MaintenanceOrderInternalID', 'ApplicationStatusObject']),
+            output = join.objects();
+
+        return [
+            {}, {}, {}
+        ];
+        
+    });
 
 });
 

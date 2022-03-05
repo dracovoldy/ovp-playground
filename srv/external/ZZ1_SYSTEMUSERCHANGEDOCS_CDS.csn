@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.8.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "ZZ1_SYSTEMUSERCHANGEDOCS_CDS": {
+      "kind": "service",
+      "@cds.external": true,
+      "@m.IsDefaultEntityContainer": "true",
+      "@sap.message.scope.supported": "true",
+      "@sap.supported.formats": "atom json xlsx"
+    },
+    "ZZ1_SYSTEMUSERCHANGEDOCS_CDS.ZZ1_SystemUserChangeDocs": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "Change Document for System User Status",
+      "elements": {
+        "ApplicationStatusObject": {
+          "key": true,
+          "type": "cds.String",
+          "length": 22,
+          "@sap.display.format": "UpperCase",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Object number"
+        },
+        "ApplicationStatus": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5,
+          "@sap.display.format": "UpperCase",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Status",
+          "@sap.quickinfo": "Object status"
+        },
+        "ChangeNumber": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Change number"
+        },
+        "ChangeDocumentStatusDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Date",
+          "@sap.quickinfo": "Creation date of the change document"
+        },
+        "ChangeDocumentStatusTime": {
+          "type": "cds.Time",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Time",
+          "@sap.quickinfo": "Time changed"
+        },
+        "ChangeDocumentStatusDateTime": {
+          "type": "cds.DateTime",
+          "@odata.type": "Edm.DateTimeOffset",
+          "@odata.precision": 0,
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Status Time Stamp"
+        },
+        "TransactionCode": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "UpperCase",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Transaction code"
+        },
+        "ChangeTransactionCode": {
+          "type": "cds.String",
+          "length": 20,
+          "@sap.display.format": "UpperCase",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Transaction Code",
+          "@sap.quickinfo": "Transaction in which a change was made"
+        },
+        "ChangeDocumentStatusIsInactive": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Status inactive",
+          "@sap.quickinfo": "Indicator: Status Is Inactive"
+        },
+        "ChangeIndicator": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "UpperCase",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Change Indicator"
+        }
+      }
+    }
+  }
+}

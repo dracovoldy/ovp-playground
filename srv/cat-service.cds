@@ -20,15 +20,26 @@ service CatalogService {
             Counter
         };
 
+    view MaintenanceOrderCompleteAnalytics as 
+        select from schema.MaintOrderCalendarDate {
+            MaintenanceOrder,
+            MaintenanceOrderType,
+            LatestAcceptableCompletionDate,
+            CalendarYear,
+            CalendarWeek,
+            CompletionDateDim,
+            MaintOrderReferenceDate,
+            Counter
+        };
+    
     view MaintenanceOrderAgeAnalytics as 
-    select from schema.MaintOrderCalendarDate {
-        MaintenanceOrder,
-        MaintenanceOrderType,
-        LatestAcceptableCompletionDate,
-        CalendarYear,
-        CalendarWeek,
-        CompletionDateDim,
-        MaintOrderReferenceDate,
-        Counter
-    }
+        select from schema.MaintOrderChangeDocs {
+            MaintenanceOrder,
+            MaintenanceOrderInternalID,
+            DateRange,
+            Bucket,
+            Counter
+        };
+
+
 }

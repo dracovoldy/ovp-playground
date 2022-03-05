@@ -179,7 +179,7 @@
                 "template": "project1.cards.analytics",
                 "settings": {
                     "title": "{{card03_title}}",
-                    "entitySet": "MaintenanceOrderAgeAnalytics",
+                    "entitySet": "MaintenanceOrderCompleteAnalytics",
                     "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#CompleteionDateByOrderType",
                     "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
                     "defaultSpan": {

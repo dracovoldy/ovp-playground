@@ -60,7 +60,7 @@ annotate CatalogService.MaintenanceOrderAnalytics with @(
     }
 );
 
-annotate CatalogService.MaintenanceOrderAgeAnalytics with @(
+annotate CatalogService.MaintenanceOrderCompleteAnalytics with @(
     Aggregation : {ApplySupported : {PropertyRestrictions : true}},
     UI          : {
         PresentationVariant #Chart1 : {Visualizations : ['@UI.Chart#CompleteionDateByOrderType']},
@@ -102,9 +102,9 @@ annotate CatalogService.MaintenanceOrderAnalytics with {
     @Aggregation.default : #SUM
     @Core.Computed
     Counter                  @(title : '{i18n>Counter}');
-}
+};
 
-annotate CatalogService.MaintenanceOrderAgeAnalytics with {
+annotate CatalogService.MaintenanceOrderCompleteAnalytics with {
     @Analytics.Dimension : true
     MaintenanceOrderType @(title : '{i18n>MaintenanceOrderType}');
     @Analytics.Dimension : true
@@ -114,7 +114,17 @@ annotate CatalogService.MaintenanceOrderAgeAnalytics with {
     @Analytics.Measure   : true
     @Aggregation.default : #SUM
     Counter              @(title : '{i18n>Counter}');
-}
+};
+
+annotate CatalogService.MaintenanceOrderAgeAnalytics with {
+    @Analytics.Dimension : true
+    DateRange            @(title : '{i18n>DateRange}');
+    @Analytics.Dimension : true
+    Bucket               @(title : '{i18n>Bucket}');
+    @Analytics.Measure   : true
+    @Aggregation.default : #SUM
+    Counter              @(title : '{i18n>Counter}');
+};
 
 // annotate CatalogService.MaintenanceOrderAgeAnalytics with @(
 //     Aggregation.ApplySupported : {
