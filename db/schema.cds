@@ -43,6 +43,7 @@ entity MaintOrderCalendarDate as
 entity MaintOrderChangeDocs as
     select from maintorderext.MaintenanceOrder {
         key MaintenanceOrder,
+            MaintenanceOrderType,
             MaintenanceOrderInternalID,
             MaintOrderReferenceDate,
             virtual '' as Bucket : String(10),

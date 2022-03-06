@@ -94,13 +94,18 @@ annotate CatalogService.MaintenanceOrderAgeAnalytics with @(
     UI          : {
         PresentationVariant #Chart1 : {Visualizations : ['@UI.Chart#AgeCount']},
         Chart #AgeCount : {
-            ChartType           : #Column,
+            ChartType           : #HeatMap,
             Dimensions          : [
-                'Bucket'
+                'Bucket',
+                'MaintenanceOrderType'
             ],
             DimensionAttributes : [
                 {
                     Dimension : 'Bucket',
+                    Role      : #Category
+                },
+                {
+                    Dimension : 'MaintenanceOrderType',
                     Role      : #Series
                 }
             ],
@@ -143,6 +148,8 @@ annotate CatalogService.MaintenanceOrderCompleteAnalytics with {
 annotate CatalogService.MaintenanceOrderAgeAnalytics with {
     @Analytics.Dimension : true
     Bucket               @(title : '{i18n>Bucket}');
+    @Analytics.Dimension : true
+    MaintenanceOrderType @(title : '{i18n>MaintenanceOrderType}');
     @Analytics.Measure   : true
     @Aggregation.default : #SUM
     Counter              @(title : '{i18n>Counter}');

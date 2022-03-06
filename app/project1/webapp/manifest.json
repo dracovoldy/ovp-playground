@@ -203,7 +203,7 @@
                     "presentationVariantAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Chart1",
                     "defaultSpan": {
                         "rows": 1,
-                        "cols": 3,
+                        "cols": 2,
                         "showOnlyHeader": false
                     },
                     "custom": {

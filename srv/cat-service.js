@@ -222,7 +222,7 @@ module.exports = cds.service.impl(async (srv) => {
     // Join with I_SystemUserChangeDocs to calculate Age Dimension Bucket
     srv.on(['READ'], MaintenanceOrderAgeAnalytics, async (req) => {
 
-        let { xpr } = cds.parse.expr("MaintOrderReferenceDate > '2022-01-01' and MaintOrderReferenceDate < '2022-03-04'");
+        let { xpr } = cds.parse.expr("MaintOrderReferenceDate > '2021-10-04' and MaintOrderReferenceDate < '2022-03-04'");
         
         let query = SELECT.from(req.query.SELECT.from)
             // .columns(req.query.SELECT.columns)
@@ -267,7 +267,7 @@ module.exports = cds.service.impl(async (srv) => {
                 from: { ref: ["ZZ1_SYSTEMUSERCHANGEDOCS_CDS.ZZ1_SystemUserChangeDocs"] },
                 where:  [ 
                     "(",
-                        { ref: ["ChangeDocumentStatusDate"] }, ">", { val: '2022-01-01' }, 
+                        { ref: ["ChangeDocumentStatusDate"] }, ">", { val: '2021-10-04' }, 
                         "and", 
                         { ref: ["ChangeDocumentStatusDate"] }, "<", { val: '2022-03-04' }, 
                     ")",
@@ -280,7 +280,7 @@ module.exports = cds.service.impl(async (srv) => {
         let docs_tab = arq.from(res_docs),
             join = orders_tab.join_left(docs_tab, ['MaintenanceOrderInternalID', 'ApplicationStatusObject'])
                              .derive({Bucket: arq.escape(join => calculateBucket(join.MaintOrderReferenceDate))})
-                             .groupby(['Bucket'])
+                             .groupby(["MaintenanceOrderType", "Bucket"])
                              .rollup({__AGGREGATION__Counter: arq.op.count()}),
             result = join.objects();
 

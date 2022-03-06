@@ -35,6 +35,7 @@ service CatalogService {
     view MaintenanceOrderAgeAnalytics as 
         select from schema.MaintOrderChangeDocs {
             MaintenanceOrder,
+            MaintenanceOrderType,
             MaintenanceOrderInternalID,
             MaintOrderReferenceDate,
             Bucket,
