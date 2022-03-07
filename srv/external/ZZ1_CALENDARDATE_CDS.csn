@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "creator": "cds-dk 4.8.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "ZZ1_CALENDARDATE_CDS": {
+      "kind": "service",
+      "@cds.external": true,
+      "@m.IsDefaultEntityContainer": "true",
+      "@sap.message.scope.supported": "true",
+      "@sap.supported.formats": "atom json xlsx"
+    },
+    "ZZ1_CALENDARDATE_CDS.ZZ1_CALENDARDATE": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.label": "CALENDARDATE",
+      "elements": {
+        "CalendarDate": {
+          "key": true,
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar Date"
+        },
+        "CalendarYear": {
+          "type": "cds.String",
+          "length": 4,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar Year"
+        },
+        "CalendarQuarter": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar Quarter"
+        },
+        "CalendarMonth": {
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar Month"
+        },
+        "CalendarWeek": {
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar Week"
+        },
+        "CalendarDay": {
+          "type": "cds.String",
+          "length": 2,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar Day"
+        },
+        "YearMonth": {
+          "type": "cds.String",
+          "length": 6,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Year Month"
+        },
+        "YearQuarter": {
+          "type": "cds.String",
+          "length": 5,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Year Quarter"
+        },
+        "YearWeek": {
+          "type": "cds.String",
+          "length": 6,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Year Week"
+        },
+        "WeekDay": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Week Day"
+        },
+        "FirstDayOfWeekDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "First day of week date"
+        },
+        "FirstDayOfMonthDate": {
+          "type": "cds.Date",
+          "@sap.display.format": "Date",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "First Day of Month",
+          "@sap.quickinfo": "First Day of Month Date"
+        },
+        "CalendarDayOfYear": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Calendar day of year"
+        },
+        "YearDay": {
+          "type": "cds.String",
+          "length": 7,
+          "@sap.display.format": "NonNegative",
+          "@sap.required.in.filter": "false",
+          "@sap.label": "Day of the year",
+          "@sap.quickinfo": "Year Day"
+        }
+      }
+    }
+  }
+}
