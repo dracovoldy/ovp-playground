@@ -25,12 +25,15 @@ const UTCDate = sDate => {
 
 function dayDiff(date1, date2) {
     let millisPerDay = 24 * 60 * 60 * 1000;
-    return (UTCDate(date2) - UTCDate(date1)) / millisPerDay;
+    let d2 = UTCDate(date2); 
+    let d1 = UTCDate(date1);
+    let diff = (d2 - d1) / millisPerDay;
+    return diff;
 }
 
 const calculateBucket = date => {
     let now   = new Date(),
-        today = now.getFullYear() + "-" + now.getDate() + "-" + (now.getMonth() + 1);
+        today = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
         diff  = dayDiff(date, today);
         if (diff > 0 && diff < 7) {
             return "< 7 Days";
@@ -222,7 +225,7 @@ module.exports = cds.service.impl(async (srv) => {
     // Join with I_SystemUserChangeDocs to calculate Age Dimension Bucket
     srv.on(['READ'], MaintenanceOrderAgeAnalytics, async (req) => {
 
-        let { xpr } = cds.parse.expr("MaintOrderReferenceDate > '2021-10-04' and MaintOrderReferenceDate < '2022-03-04'");
+        let { xpr } = cds.parse.expr("MaintOrderReferenceDate > '2021-10-07' and MaintOrderReferenceDate < '2022-03-07'");
         
         let query = SELECT.from(req.query.SELECT.from)
             // .columns(req.query.SELECT.columns)
@@ -267,12 +270,18 @@ module.exports = cds.service.impl(async (srv) => {
                 from: { ref: ["ZZ1_SYSTEMUSERCHANGEDOCS_CDS.ZZ1_SystemUserChangeDocs"] },
                 where:  [ 
                     "(",
-                        { ref: ["ChangeDocumentStatusDate"] }, ">", { val: '2021-10-04' }, 
+                        { ref: ["ChangeDocumentStatusDate"] }, ">", { val: '2021-10-07' }, 
                         "and", 
-                        { ref: ["ChangeDocumentStatusDate"] }, "<", { val: '2022-03-04' }, 
+                        { ref: ["ChangeDocumentStatusDate"] }, "<", { val: '2022-03-07' }, 
                     ")",
                     "and",
-                    { ref: ["ApplicationStatus"] }, "=", { val: 'I0001' }
+                    { ref: ["ChangeNumber"] }, "=", { val: '001' },
+                    "and",
+                    { ref: ["ChangeIndicator"] }, "=", { val: 'I' },
+                    "and",
+                    { ref: ["ChangeDocumentStatusIsInactive"] }, "=", { val: '' },
+                    "and",
+                    { ref: ["ApplicationStatus"] }, "=", { val: 'IEAM2' }
                 ]
             } 
         });
