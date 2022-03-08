@@ -128,7 +128,7 @@
         },
         "contentDensities": {
             "compact": true,
-            "cozy": true
+            "cozy": false
         }
     },
     "sap.fiori": {
