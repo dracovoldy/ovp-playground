@@ -10,7 +10,7 @@ sap.ui.define([
 
     // controller for custom filter, navigation param, action(quick view and global filter), navigation target 
     // @ts-ignore
-    return sap.ui.controller("project1.ext.OVPControllerExt", {
+    return sap.ui.controller("com.chevron.dcore.analyticspoc.ext.OVPControllerExt", {
 
         onInit: function (oEvent) {
             //Get SmartFilterBar

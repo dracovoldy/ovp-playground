@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "project1",
+        "id": "com.chevron.dcore.analyticspoc",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -46,7 +46,7 @@
         },
         "crossNavigation": {
             "inbounds": {
-                "project1-inbound": {
+                "com.chevron.dcore.analyticspoc-inbound": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -121,7 +121,7 @@
             "extensions": {
                 "sap.ui.controllerExtensions": {
                     "sap.ovp.app.Main": {
-						"controllerName": "project1.ext.OVPControllerExt"
+						"controllerName": "com.chevron.dcore.analyticspoc.ext.OVPControllerExt"
 					}
                 }
             }
@@ -147,7 +147,7 @@
         "cards": {
             "card02": {
                 "model": "catalogService",
-                "template": "project1.cards.analytics",
+                "template": "com.chevron.dcore.analyticspoc.cards.analytics",
                 "settings": {
                     "title": "{{card02_title}}",
                     "tabs": [
@@ -180,7 +180,7 @@
             },
             "card03": {
                 "model": "catalogService",
-                "template": "project1.cards.analytics",
+                "template": "com.chevron.dcore.analyticspoc.cards.analytics",
                 "settings": {
                     "title": "{{card03_title}}",
                     "entitySet": "MaintenanceOrderCompleteAnalytics",
@@ -199,7 +199,7 @@
             },
             "card04": {
                 "model": "catalogService",
-                "template": "project1.cards.analytics",
+                "template": "com.chevron.dcore.analyticspoc.cards.analytics",
                 "settings": {
                     "title": "{{card04_title}}",
                     "entitySet": "MaintenanceOrderAgeAnalytics",

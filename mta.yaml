@@ -1,0 +1,124 @@
+_schema-version: "3.1"
+ID: AM-AnalyticsPoC
+description: AM-Analytics POC CAP project.
+version: 1.0.0
+modules:
+- name: AM-AnalyticsPoC-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: AM-AnalyticsPoC-dest-srv
+  - name: AM-AnalyticsPoC-uaa
+  - name: AM-AnalyticsPoC-conn
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: AM-AnalyticsPoC-dest-content
+  type: com.sap.application.content
+  requires:
+  - name: AM-AnalyticsPoC-dest-srv
+    parameters:
+      content-target: true
+  - name: AM-AnalyticsPoC-repo-host
+    parameters:
+      service-key:
+        name: AM-AnalyticsPoC-repo-host-key
+  - name: AM-AnalyticsPoC-uaa
+    parameters:
+      service-key:
+        name: AM-AnalyticsPoC-uaa-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: AM-AnalyticsPoC_repo_host
+          ServiceInstanceName: AM-AnalyticsPoC-html5-srv
+          ServiceKeyName: AM-AnalyticsPoC-repo-host-key
+          sap.cloud.service: com.chevron.dcore.iam.woplanningovp
+        - Authentication: OAuth2UserTokenExchange
+          Name: AM-AnalyticsPoC_uaa
+          ServiceInstanceName: AM-AnalyticsPoC-uaa
+          ServiceKeyName: AM-AnalyticsPoC-uaa-key
+          sap.cloud.service: com.chevron.dcore.iam.woplanningovp
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: AM-AnalyticsPoC-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: AM-AnalyticsPoC-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comchevrondcoreiamwoplanningovp.zip
+      name: comchevrondcoreiamwoplanningovp
+      target-path: resources/
+- name: comchevrondcoreiamwoplanningovp
+  type: html5
+  path: app/woplanning-ovp
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: AM-AnalyticsPoC-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: AM-AnalyticsPoC-html5-srv
+    service-plan: app-host
+- name: AM-AnalyticsPoC-dest-srv
+  type: org.cloudfoundry.managed-service
+  requires:
+    - name: srv-api
+  parameters:
+    service: destination
+    service-name: AM-AnalyticsPoC-dest-srv
+    service-plan: lite
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        subaccount:
+          existing_destinations_policy: update
+          destinations:
+            - Name: AM-AnalyticsPoC-srv
+              Description: AM-Analytics Work Order Planning CAP service
+              Authentication: NoAuthentication
+              ProxyType: Internet
+              Type: HTTP
+              URL: ~{srv-api/srv-url}
+              HTML5.DynamicDestination: true
+              HTML5.ForwardAuthToken: true
+- name: AM-AnalyticsPoC-conn
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: AM-AnalyticsPoC-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: AM-AnalyticsPoC-uaa
+    service-plan: application
+# parameters:
+  # deploy_mode: html5-repo
+  # enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx -p @sap/cds-dk cds build --production

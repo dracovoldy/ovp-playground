@@ -3,17 +3,17 @@ sap.ui.define(["sap/ovp/cards/generic/Component"],
         "use strict";
 
         /* component for custom card */
-        return CardComponent.extend("project1.cards.analytics.Component", {
+        return CardComponent.extend("com.chevron.dcore.analyticspoc.cards.analytics.Component", {
             // use inline declaration instead of component.json to save 1 round trip
             metadata: {
                 properties: {
                     "contentFragment": {
                         "type": "string",
-                        "defaultValue": "project1.cards.analytics.SmartCard"
+                        "defaultValue": "com.chevron.dcore.analyticspoc.cards.analytics.SmartCard"
                     },
                     "controllerName": {
                         "type": "string",
-                        "defaultValue": "project1.cards.analytics.SmartCard"
+                        "defaultValue": "com.chevron.dcore.analyticspoc.cards.analytics.SmartCard"
                     }
                 },
 
@@ -31,7 +31,7 @@ sap.ui.define(["sap/ovp/cards/generic/Component"],
                 customizing: {
                     "sap.ui.controllerExtensions": {
                         "sap.ovp.cards.generic.Card": {
-                            controllerName: "project1.cards.analytics.SmartCard"
+                            controllerName: "com.chevron.dcore.analyticspoc.cards.analytics.SmartCard"
                         }
                     }
                 }

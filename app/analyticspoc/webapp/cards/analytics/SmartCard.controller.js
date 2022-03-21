@@ -1,7 +1,7 @@
 sap.ui.define(["sap/ovp/cards/generic/Card.controller"],
     function (CardController) {
         "use strict";
-        return CardController.extend("project1.cards.analytics.SmartCard", {
+        return CardController.extend("com.chevron.dcore.analyticspoc.cards.analytics.SmartCard", {
             onInit: function () {
                 CardController.prototype.onInit.apply(this, arguments);
 
