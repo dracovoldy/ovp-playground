@@ -26,5 +26,5 @@ server:
   - name: fiori-tools-preview
     afterMiddleware: fiori-tools-appreload
     configuration:
-      component: analyticspoc
+      component: com.chevron.dcore.analyticspoc
       ui5Theme: sap_fiori_3

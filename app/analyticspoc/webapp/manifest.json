@@ -14,7 +14,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/v2/analytics/",
+                "uri": "srv-api/v2/analytics/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "2.0",
@@ -25,7 +25,7 @@
                 }
             },
             "catalogService": {
-                "uri": "/v2/catalog/",
+                "uri": "srv-api/v2/catalog/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "2.0"
@@ -217,5 +217,12 @@
                 }
             }
         }
+    },
+    "sap.ui.generic.app": {
+        "settings": {}
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "com.chevron.dcore.iam" 
     }
 }

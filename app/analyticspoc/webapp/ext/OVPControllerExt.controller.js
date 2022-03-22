@@ -14,7 +14,7 @@ sap.ui.define([
 
         onInit: function (oEvent) {
             //Get SmartFilterBar
-            var oGlobalFilter = this.getView().byId("mainView--ovpGlobalFilter");
+            var oGlobalFilter = this.getView().byId(this.getView().getId() + '--ovpGlobalFilter')
 
             oGlobalFilter.attachInitialized(function (oEvent) {
                 var lowDate = new Date(new Date().getFullYear(), 0, 1);

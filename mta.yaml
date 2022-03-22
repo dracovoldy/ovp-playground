@@ -39,12 +39,12 @@ modules:
         - Name: AM-AnalyticsPoC_repo_host
           ServiceInstanceName: AM-AnalyticsPoC-html5-srv
           ServiceKeyName: AM-AnalyticsPoC-repo-host-key
-          sap.cloud.service: com.chevron.dcore.iam.woplanningovp
+          sap.cloud.service: com.chevron.dcore.analyticspoc
         - Authentication: OAuth2UserTokenExchange
           Name: AM-AnalyticsPoC_uaa
           ServiceInstanceName: AM-AnalyticsPoC-uaa
           ServiceKeyName: AM-AnalyticsPoC-uaa-key
-          sap.cloud.service: com.chevron.dcore.iam.woplanningovp
+          sap.cloud.service: com.chevron.dcore.analyticspoc
         existing_destinations_policy: update
   build-parameters:
     no-source: true
@@ -59,12 +59,12 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - comchevrondcoreiamwoplanningovp.zip
-      name: comchevrondcoreiamwoplanningovp
+      - comchevrondcoreanalyticspoc.zip
+      name: comchevrondcoreanalyticspoc
       target-path: resources/
-- name: comchevrondcoreiamwoplanningovp
+- name: comchevrondcoreanalyticspoc
   type: html5
-  path: app/woplanning-ovp
+  path: app/analyticspoc
   build-parameters:
     build-result: dist
     builder: custom
@@ -94,7 +94,7 @@ resources:
           existing_destinations_policy: update
           destinations:
             - Name: AM-AnalyticsPoC-srv
-              Description: AM-Analytics Work Order Planning CAP service
+              Description: AM-Analytics POC CAP service
               Authentication: NoAuthentication
               ProxyType: Internet
               Type: HTTP

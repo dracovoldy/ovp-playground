@@ -2,21 +2,6 @@ specVersion: '2.4'
 metadata:
   name: 'analyticspoc'
 type: application
-framework:
-  name: SAPUI5
-  version: '1.97.2'
-  libraries: 
-    - name: sap.m
-    - name: sap.f
-    - name: sap.ushell
-    - name: sap.ui.core
-    - name: sap.ui.layout
-    - name: sap.ui.generic.app
-    - name: sap.ui.comp
-    - name: sap.suite.ui.generic.template
-    - name: sap.ovp
-    - name: sap.ui.rta
-    - name: themelib_sap_fiori_3
 server:
   customMiddleware:
   - name: fiori-tools-proxy
@@ -26,6 +11,20 @@ server:
       backend:
       - path: /v2
         url: http://localhost:4004
+      ui5:
+        path: 
+        - /resources
+        - /test-resources
+        url: https://ui5.sap.com
+  - name: sap-fe-mockserver
+    beforeMiddleware: fiori-tools-proxy
+    configuration:
+      service:
+        urlBasePath: /v2/maint-order-task-list
+        name: ''
+        metadataXmlPath: ./webapp/localService/metadata.xml
+        mockdataRootPath: ./webapp/localService/mockdata
+        generateMockData: true
   - name: fiori-tools-appreload
     afterMiddleware: compression
     configuration:
